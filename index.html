@@ -424,444 +424,6 @@
         // ============================================================
 
         const CIRCULOS = [
-            { id: 0, nome: "Fora do Inferno", cor: "#8a9a7c", desc: "A selva escura e o encontro com Virgílio" },
-            { id: 1, nome: "1º Círculo — Limbo", cor: "#c9b896", desc: "Os virtuosos não batizados" },
-            { id: 2, nome: "2º Círculo — Luxúria", cor: "#b98a6b", desc: "Os arrastados pelo desejo" },
-            { id: 3, nome: "3º Círculo — Gula", cor: "#a97a5a", desc: "Os afundados na lama e no granizo" },
-            { id: 4, nome: "4º/5º Círculo — Avareza e Ira", cor: "#9a6a4c", desc: "Os que amaram o dinheiro e os que odiaram" },
-            { id: 5, nome: "Muralhas de Dite", cor: "#8a5a40", desc: "A cidade de ferro dentro do Inferno" },
-            { id: 6, nome: "6º Círculo — Heresia", cor: "#7a4c38", desc: "Túmulos em chamas" },
-            { id: 7, nome: "7º Círculo — Violência", cor: "#6a3e30", desc: "Três anéis de sangue, floresta e fogo" },
-            { id: 8, nome: "8º Círculo — Fraude (Malebolge)", cor: "#5a3228", desc: "Dez valas de engano" },
-            { id: 9, nome: "9º Círculo — Traição", cor: "#2b2118", desc: "O gelo de Cocito e Lúcifer" },
-        ];
-
-        <!DOCTYPE html>
-<html lang="pt-BR">
-<head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Guia de Leitura — Inferno (Dante Alighieri)</title>
-
-    <!-- Font Awesome (ícones) -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=MedievalSharp&family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet" />
-
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            background-color: #1a1410;
-            background-image: radial-gradient(circle at 20% 20%, #2f241c 0%, #0f0b08 100%);
-            color: #ece3d9;
-            font-family: 'Cormorant Garamond', serif;
-            line-height: 1.7;
-            padding: 1.5rem;
-            min-height: 100vh;
-        }
-
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            background: rgba(20, 16, 12, 0.85);
-            backdrop-filter: blur(2px);
-            border: 1px solid #5b4a3a;
-            border-radius: 2rem;
-            padding: 2rem 2rem 3rem;
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.9);
-        }
-
-        header {
-            text-align: center;
-            border-bottom: 2px solid #8a7a6b;
-            padding-bottom: 1.5rem;
-            margin-bottom: 2rem;
-        }
-
-        header h1 {
-            font-family: 'MedievalSharp', cursive;
-            font-size: 3rem;
-            font-weight: 400;
-            letter-spacing: 0.1em;
-            color: #e6d5c0;
-            text-shadow: 0 0 15px rgba(200, 160, 120, 0.2);
-        }
-
-        header h1 i {
-            color: #b8956e;
-            margin: 0 0.5rem;
-        }
-
-        header p {
-            font-size: 1.2rem;
-            color: #bcab9a;
-            margin-top: 0.5rem;
-            font-style: italic;
-        }
-
-        header .sub {
-            display: flex;
-            justify-content: center;
-            gap: 1rem;
-            flex-wrap: wrap;
-            margin-top: 0.75rem;
-            font-size: 0.95rem;
-            color: #8e7d6b;
-        }
-
-        header .sub span {
-            background: #2c221c;
-            padding: 0.2rem 1rem;
-            border-radius: 30px;
-            border: 1px solid #5b4a3a;
-        }
-
-        .stats {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 1rem 2rem;
-            background: #241d17;
-            padding: 0.8rem 1.5rem;
-            border-radius: 50px;
-            margin-bottom: 2rem;
-            border: 1px solid #4c3d30;
-        }
-
-        .stats .stat-item {
-            display: flex;
-            align-items: center;
-            gap: 0.4rem;
-            font-size: 1rem;
-            color: #cfc0b0;
-        }
-
-        .stats .stat-item i {
-            color: #b8956e;
-            width: 1.4rem;
-            text-align: center;
-        }
-
-        .stats .stat-item strong {
-            color: #eedcc8;
-            font-weight: 600;
-        }
-
-        .filtros {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.5rem;
-            margin-bottom: 2rem;
-            justify-content: center;
-        }
-
-        .filtros .btn-filtro {
-            background: #2c221c;
-            border: 1px solid #4d3d2f;
-            color: #cfc0b0;
-            padding: 0.4rem 1.2rem;
-            border-radius: 30px;
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 0.95rem;
-            font-weight: 600;
-            cursor: pointer;
-            transition: 0.3s;
-            letter-spacing: 0.03em;
-        }
-
-        .filtros .btn-filtro:hover {
-            background: #4d3d2f;
-            color: #f5eadc;
-            border-color: #b8956e;
-        }
-
-        .filtros .btn-filtro.ativo {
-            background: #6b5542;
-            border-color: #dbb594;
-            color: #fff6ea;
-            box-shadow: 0 0 12px rgba(200, 160, 120, 0.2);
-        }
-
-        .lista-cantos {
-            display: flex;
-            flex-direction: column;
-            gap: 1.8rem;
-            margin-top: 1rem;
-        }
-
-        .card-canto {
-            background: #1f1814;
-            border-left: 6px solid #6b5542;
-            border-radius: 1.2rem;
-            padding: 1.4rem 2rem 1.8rem;
-            transition: 0.25s;
-            box-shadow: 0 6px 18px rgba(0, 0, 0, 0.5);
-        }
-
-        .card-canto:hover {
-            background: #261e18;
-            border-left-color: #b8956e;
-            transform: translateY(-2px);
-        }
-
-        .card-canto .cabecalho-canto {
-            display: flex;
-            flex-wrap: wrap;
-            align-items: baseline;
-            gap: 0.5rem 1.2rem;
-            margin-bottom: 0.5rem;
-        }
-
-        .card-canto .cabecalho-canto .num {
-            font-family: 'MedievalSharp', cursive;
-            font-size: 1.6rem;
-            color: #b8956e;
-            font-weight: 400;
-            letter-spacing: 0.05em;
-        }
-
-        .card-canto .cabecalho-canto .titulo {
-            font-size: 1.8rem;
-            font-weight: 600;
-            color: #f0dfcd;
-            letter-spacing: 0.02em;
-        }
-
-        .card-canto .cabecalho-canto .circulo-tag {
-            font-size: 0.85rem;
-            background: #2c221c;
-            padding: 0.2rem 1rem;
-            border-radius: 30px;
-            color: #d4c3b0;
-            border: 1px solid #5b4a3a;
-            display: inline-flex;
-            align-items: center;
-            gap: 0.4rem;
-        }
-
-        .card-canto .circulo-tag .cor-bolinha {
-            display: inline-block;
-            width: 12px;
-            height: 12px;
-            border-radius: 50%;
-            border: 1px solid #3f3329;
-        }
-
-        .card-canto .resumo {
-            font-size: 1.1rem;
-            color: #d7cbbc;
-            margin: 0.6rem 0 1rem;
-            padding-left: 0.2rem;
-            border-left: 3px solid #4d3d2f;
-            padding-left: 1rem;
-        }
-
-        .card-canto .versao-simples {
-            background: #1d1612;
-            border-radius: 12px;
-            padding: 0.8rem 1.2rem;
-            margin: 0.8rem 0 1rem;
-            color: #cfbfae;
-            border-left: 3px solid #7d6a57;
-            font-style: italic;
-        }
-
-        .card-canto .versao-simples strong {
-            color: #dbb594;
-            font-style: normal;
-        }
-
-        .card-canto .detalhes {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 0.8rem 2rem;
-            margin-top: 0.8rem;
-        }
-
-        .card-canto .detalhes .bloco {
-            background: #14100c;
-            border-radius: 12px;
-            padding: 0.6rem 1rem;
-            border: 1px solid #2f241c;
-        }
-
-        .card-canto .detalhes .bloco h4 {
-            font-size: 0.9rem;
-            text-transform: uppercase;
-            letter-spacing: 0.1em;
-            color: #b8956e;
-            margin-bottom: 0.2rem;
-            font-weight: 400;
-        }
-
-        .card-canto .detalhes .bloco p,
-        .card-canto .detalhes .bloco li {
-            font-size: 0.98rem;
-            color: #d4c5b4;
-        }
-
-        .card-canto .detalhes .bloco ul {
-            list-style: none;
-            padding-left: 0;
-        }
-
-        .card-canto .detalhes .bloco ul li {
-            padding: 0.15rem 0;
-            border-bottom: 1px dotted #2f241c;
-        }
-
-        .card-canto .detalhes .bloco ul li strong {
-            color: #eedcc8;
-            font-weight: 600;
-        }
-
-        .card-canto .detalhes .bloco ul li:last-child {
-            border-bottom: none;
-        }
-
-        .card-canto .contexto {
-            margin-top: 0.8rem;
-            font-size: 0.98rem;
-            color: #b8a697;
-            background: #1a1410;
-            padding: 0.6rem 1rem;
-            border-radius: 10px;
-            border-left: 3px solid #5b4a3a;
-        }
-
-        .card-canto .contexto strong {
-            color: #d4c3b0;
-        }
-
-        .card-canto .personagens-destaque {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.3rem 0.8rem;
-            margin: 0.4rem 0 0.2rem;
-        }
-
-        .card-canto .personagens-destaque .tag-personagem {
-            background: #1d1612;
-            border-radius: 30px;
-            padding: 0.1rem 0.8rem;
-            font-size: 0.85rem;
-            border: 1px solid #3f3329;
-            color: #d4c3b0;
-        }
-
-        .card-canto .personagens-destaque .tag-personagem i {
-            color: #b8956e;
-            margin-right: 0.3rem;
-        }
-
-        @media (max-width: 700px) {
-            .container {
-                padding: 1rem;
-            }
-            header h1 {
-                font-size: 2.2rem;
-            }
-            .card-canto {
-                padding: 1rem 1.2rem;
-            }
-            .card-canto .cabecalho-canto .titulo {
-                font-size: 1.4rem;
-            }
-            .card-canto .detalhes {
-                grid-template-columns: 1fr;
-            }
-            .stats {
-                border-radius: 20px;
-                padding: 0.6rem 1rem;
-            }
-            .filtros .btn-filtro {
-                font-size: 0.85rem;
-                padding: 0.3rem 0.8rem;
-            }
-        }
-
-        @media (max-width: 450px) {
-            header h1 {
-                font-size: 1.8rem;
-            }
-            .card-canto .cabecalho-canto .num {
-                font-size: 1.2rem;
-            }
-            .card-canto .resumo {
-                font-size: 1rem;
-            }
-        }
-
-        footer {
-            margin-top: 2.5rem;
-            text-align: center;
-            font-size: 0.9rem;
-            color: #6b5d4e;
-            border-top: 1px solid #2f241c;
-            padding-top: 1.5rem;
-            letter-spacing: 0.05em;
-        }
-
-        footer i {
-            color: #b8956e;
-        }
-
-        html {
-            scroll-behavior: smooth;
-        }
-    </style>
-</head>
-<body>
-
-    <div class="container" id="app">
-
-        <header>
-            <h1>
-                <i class="fas fa-fire"></i>
-                Inferno
-                <i class="fas fa-skull"></i>
-            </h1>
-            <p>Divina Comédia — Guia de Leitura</p>
-            <div class="sub">
-                <span><i class="fas fa-feather-alt"></i> Dante Alighieri</span>
-                <span><i class="fas fa-book-open"></i> 34 cantos</span>
-                <span><i class="fas fa-circle"></i> 9 círculos</span>
-            </div>
-        </header>
-
-        <div class="stats" id="stats">
-            <div class="stat-item"><i class="fas fa-layer-group"></i> <strong id="totalCantos">34</strong> cantos</div>
-            <div class="stat-item"><i class="fas fa-users"></i> <strong id="totalPersonagens">0</strong> personagens</div>
-            <div class="stat-item"><i class="fas fa-quote-right"></i> <strong id="totalVocabulario">0</strong> termos</div>
-        </div>
-
-        <div class="filtros" id="filtros">
-            <button class="btn-filtro ativo" data-filtro="todos">Todos os cantos</button>
-            <button class="btn-filtro" data-filtro="personagens">Personagens</button>
-            <button class="btn-filtro" data-filtro="vocabulario">Vocabulário</button>
-            <button class="btn-filtro" data-filtro="contexto">Contexto</button>
-            <button class="btn-filtro" data-filtro="simples">Versão simples</button>
-        </div>
-
-        <div class="lista-cantos" id="listaCantos"></div>
-
-        <footer>
-            <i class="fas fa-feather-alt"></i> “E dali saímos a rever as estrelas.” &nbsp;—&nbsp; <em>Inferno XXXIV</em>
-        </footer>
-
-    </div>
-
-    <script>
-        // ============================================================
-        // DADOS COMPLETOS - TODOS OS 34 CANTOS
-        // ============================================================
-
-        const CIRCULOS = [
             { id: 0, nome: "Fora do Inferno", cor: "#8a9a7c" },
             { id: 1, nome: "1º Círculo — Limbo", cor: "#c9b896" },
             { id: 2, nome: "2º Círculo — Luxúria", cor: "#b98a6b" },
@@ -874,52 +436,581 @@
             { id: 9, nome: "9º Círculo — Traição", cor: "#2b2118" }
         ];
 
-        // Vou colocar APENAS 3 cantos para teste (o código completo tem 34)
-        // Depois que funcionar, você pode adicionar o resto
         const CANTOS = [
+            // Canto 1
             {
                 numero: 1,
                 titulo: "A Selva Escura",
                 circulo: 0,
-                resumo: "No meio da vida, Dante se perde numa floresta escura.",
+                resumo: "No meio da vida, Dante se perde numa floresta escura e tenta subir um monte iluminado pelo sol, mas três feras bloqueiam seu caminho. Desesperado, ele é resgatado pela sombra do poeta romano Virgílio, enviado para guiá-lo por um caminho diferente: atravessando o Inferno e o Purgatório antes de poder subir ao monte.",
                 personagens: [
-                    { nome: "Dante", desc: "O protagonista" },
-                    { nome: "Virgílio", desc: "O guia" }
+                    { nome: "Dante (o peregrino)", desc: "O narrador e protagonista, um homem de 35 anos perdido espiritualmente — representa qualquer pessoa em crise de fé ou de propósito." },
+                    { nome: "Virgílio", desc: "Poeta romano (autor da Eneida), morto mil anos antes de Dante. Representa a razão humana e a sabedoria clássica." },
+                    { nome: "A Onça (lonza)", desc: "Simboliza a luxúria/leviandade." },
+                    { nome: "O Leão", desc: "Simboliza o orgulho e a violência." },
+                    { nome: "A Loba", desc: "Simboliza a avareza — a mais perigosa das três, pois nunca se sacia." }
                 ],
                 vocabulario: [
-                    { termo: "selva", significado: "floresta escura" }
+                    { termo: "selva escura", significado: "Floresta densa e sem luz — metáfora para o pecado e a confusão espiritual." },
+                    { termo: "sombra (ombra)", significado: "Na Comédia, é como Dante chama as almas dos mortos — corpos espirituais que mantêm a aparência que tinham em vida." },
+                    { termo: "colle", significado: "Monte/colina iluminado pelo sol — símbolo da felicidade e de Deus." }
                 ],
-                contexto: "Escrito em 1308-1320",
-                versaoSimples: "Dante se perdeu na floresta."
+                contexto: "Dante escreveu isso por volta de 1308-1320, exilado de Florença após perder na disputa política. O 'meio do caminho' é uma referência à expectativa bíblica de vida de 70 anos — ou seja, Dante tem 35 anos.",
+                versaoSimples: "Dante estava perdido numa floresta escura. Ele vê uma montanha com sol e tenta subir, mas três animais assustadores não deixam. Aparece o fantasma de um poeta chamado Virgílio, que diz: 'Não dá pra subir direto. Vamos ter que descer antes de subir.'"
             },
+            // Canto 2
             {
                 numero: 2,
                 titulo: "A Missão",
                 circulo: 0,
-                resumo: "Virgílio explica que foi enviado por Beatriz.",
+                resumo: "À noite, Dante hesita: quem é ele para fazer uma jornada que só Eneias e São Paulo fizeram antes? Virgílio o acalma contando como foi enviado por Beatriz, que por sua vez foi movida por Santa Lúcia, a pedido da Virgem Maria.",
                 personagens: [
-                    { nome: "Beatriz", desc: "O amor de Dante" },
-                    { nome: "Virgílio", desc: "O guia" }
+                    { nome: "Beatriz", desc: "Mulher amada por Dante em vida (morta jovem, em 1290). No poema, ela representa a graça divina e a teologia." },
+                    { nome: "Santa Lúcia", desc: "Santa mártir, associada à luz e à visão — simboliza a graça iluminadora." },
+                    { nome: "A Virgem Maria", desc: "Não é nomeada diretamente, mas é quem inicia toda a corrente de socorro a Dante." }
                 ],
                 vocabulario: [
-                    { termo: "Beatriz", significado: "representa a graça divina" }
+                    { termo: "Eneias", significado: "Herói troiano da Eneida de Virgílio, que visitou o mundo dos mortos ainda vivo." },
+                    { termo: "São Paulo", significado: "Apóstolo que, segundo a tradição, teve uma visão do paraíso ainda em vida." }
                 ],
-                contexto: "A cadeia da graça divina",
-                versaoSimples: "Beatriz enviou Virgílio para ajudar Dante."
+                contexto: "Este canto estabelece uma ideia central da teologia católica medieval: a graça divina desce em cadeia — de Deus/Maria, passando por santos, até tocar a pessoa comum.",
+                versaoSimples: "Dante fica com medo: 'por que EU mereceria fazer essa viagem?'. Virgílio explica que Beatriz, a mulher que Dante amou, pediu ajuda do Céu para ele. Três mulheres do Céu estão cuidando de Dante. Ele fica com mais coragem e decide seguir em frente."
             },
+            // Canto 3
             {
                 numero: 3,
                 titulo: "O Portão do Inferno",
                 circulo: 0,
-                resumo: "Dante lê a inscrição no portão do Inferno.",
+                resumo: "Dante lê a inscrição sobre o portão do Inferno, terminando com a frase mais famosa do poema: 'Deixai toda esperança, vós que entrais'. Do outro lado, encontram os indecisos — almas que em vida não escolheram nem o bem nem o mal. Chegam ao rio Aqueronte, onde o barqueiro Caronte transporta as almas condenadas.",
                 personagens: [
-                    { nome: "Caronte", desc: "O barqueiro" }
+                    { nome: "Os indecisos (ignavi)", desc: "Almas que 'viveram sem infâmia e sem louvor' — nunca tomaram partido. Correm eternamente atrás de uma bandeira sem sentido." },
+                    { nome: "Caronte", desc: "Figura da mitologia grega/romana, barqueiro que cruza os mortos pelo rio Aqueronte até o Inferno." }
                 ],
                 vocabulario: [
-                    { termo: "Aqueronte", significado: "rio do Inferno" }
+                    { termo: "'Lasciate ogne speranza, voi ch'intrate'", significado: "'Deixai toda esperança, vós que entrais' — frase gravada no portão do Inferno." },
+                    { termo: "Aqueronte", significado: "Na mitologia clássica, um dos rios do mundo dos mortos." },
+                    { termo: "ignavi", significado: "Os 'covardes' ou indecisos — nem quentes nem frios, por isso rejeitados pelo Céu e pelo Inferno." }
                 ],
-                contexto: "Mistura de mitologia e cristianismo",
-                versaoSimples: "Dante vê o portão do Inferno."
+                contexto: "Dante inventa um grupo que não está em nenhuma categoria bíblica tradicional — os que nunca escolheram nada. A mensagem é clara: indiferença moral também tem consequência.",
+                versaoSimples: "Na porta do Inferno tem uma placa que diz 'quem entra aqui perde toda esperança'. Dentro, primeiro tem gente que na vida nunca decidiu nada. Depois Dante e Virgílio chegam a um rio, onde um barqueiro assustador chamado Caronte leva as almas condenadas para o outro lado."
+            },
+            // Canto 4
+            {
+                numero: 4,
+                titulo: "O Limbo",
+                circulo: 1,
+                resumo: "Dante acorda no primeiro círculo: o Limbo. Aqui não há tortura, apenas tristeza silenciosa — é onde ficam os que viveram bem, mas não conheceram Cristo. Dante encontra os grandes poetas da Antiguidade (Homero, Horácio, Ovídio, Lucano) e é convidado a se juntar a eles como o sexto grande poeta.",
+                personagens: [
+                    { nome: "Homero", desc: "Considerado o maior dos poetas, autor da Ilíada e Odisseia — recebe Dante como igual." },
+                    { nome: "Aristóteles", desc: "Chamado por Dante de 'o mestre dos que sabem' — filósofo cuja obra foi a base da teologia medieval." },
+                    { nome: "Sócrates e Platão", desc: "Filósofos gregos, representam o auge da razão humana sem revelação divina." },
+                    { nome: "Saladino", desc: "Sultão muçulmano do século XII, elogiado por sua nobreza mesmo sem ser cristão." }
+                ],
+                vocabulario: [
+                    { termo: "Limbo", significado: "Do latim 'limbus' (borda). Na teologia medieval, é a orla do Inferno reservada às almas boas que não puderam ser batizadas." },
+                    { termo: "batismo", significado: "Sacramento cristão de entrada na fé — sua ausência impede a salvação mesmo de pessoas virtuosas." }
+                ],
+                contexto: "Este canto revela a tensão pessoal de Dante: como cristão, ele acredita que só a fé em Cristo salva; mas como homem de letras, ele amava profundamente a cultura greco-romana.",
+                versaoSimples: "No primeiro andar do Inferno não tem sofrimento de dor — só uma tristeza calma. Aqui ficam pessoas boas que viveram antes de Jesus existir. Dante encontra os escritores mais famosos da história antiga, e eles o recebem como amigo."
+            },
+            // Canto 5
+            {
+                numero: 5,
+                titulo: "Os Luxuriosos — Francesca e Paolo",
+                circulo: 2,
+                resumo: "No segundo círculo, Minos julga as almas enrolando o rabo ao redor do corpo. Aqui ficam os luxuriosos, arrastados eternamente por um vendaval que nunca cessa. Dante conversa com Francesca da Rimini, que conta como ela e seu cunhado Paolo se apaixonaram lendo juntos a história de Lancelote.",
+                personagens: [
+                    { nome: "Minos", desc: "Na mitologia, rei de Creta; aqui é o juiz infernal que decide o destino de cada alma." },
+                    { nome: "Francesca da Rimini", desc: "Mulher real do século XIII, casada por conveniência política; apaixonou-se pelo cunhado Paolo e foi morta pelo marido." },
+                    { nome: "Paolo Malatesta", desc: "Irmão do marido de Francesca; seu amante — no canto, ele apenas chora, nunca fala." }
+                ],
+                vocabulario: [
+                    { termo: "contrapasso", significado: "Princípio-chave de todo o Inferno: a pena reflete o pecado. Aqui, quem se deixou levar pela paixão é literalmente levado pelo vento." },
+                    { termo: "Minos", significado: "Figura mitológica reaproveitada por Dante como o juiz burocrático do Inferno." }
+                ],
+                contexto: "Este é um dos cantos mais lidos da Comédia. Dante mostra enorme compaixão por Francesca — a ponto de desmaiar — mesmo colocando-a no Inferno.",
+                versaoSimples: "Aqui ficam as pessoas que se deixaram levar demais pela paixão amorosa. Como castigo, elas são jogadas de um lado para o outro por um vento forte que nunca para. Dante conversa com Francesca, que se apaixonou pelo cunhado e foi morta pelo marido. Ela conta a história com tanta tristeza que Dante desmaia de pena."
+            },
+            // Canto 6
+            {
+                numero: 6,
+                titulo: "Os Glutões",
+                circulo: 3,
+                resumo: "No terceiro círculo, chove eternamente granizo, água suja e neve sobre os glutões, que jazem na lama guardados pelo cão de três cabeças Cérbero. Dante reconhece um florentino chamado Ciacco, que profetiza os conflitos políticos que dividirão Florença.",
+                personagens: [
+                    { nome: "Cérbero", desc: "Cão monstruoso de três cabeças da mitologia grega, guardião do mundo dos mortos." },
+                    { nome: "Ciacco", desc: "Florentino identificado com a gula; faz uma profecia sombria sobre o futuro político de Florença." }
+                ],
+                vocabulario: [
+                    { termo: "Cérbero", significado: "Cão de três cabeças que guarda a entrada do submundo." },
+                    { termo: "gula", significado: "Um dos sete pecados capitais — o desejo excessivo por comida/bebida." }
+                ],
+                contexto: "Florença era dividida entre guelfos e gibelinos. Foi essa disputa que levou ao exílio de Dante em 1302.",
+                versaoSimples: "Aqui ficam as pessoas que comeram e beberam demais. Agora ficam deitadas na lama, debaixo de uma chuva nojenta. Dante encontra um conhecido da sua cidade, que avisa que coisas ruins vão acontecer na política."
+            },
+            // Canto 7
+            {
+                numero: 7,
+                titulo: "Avarentos, Pródigos e o Rio da Ira",
+                circulo: 4,
+                resumo: "Plutão tenta barrar a passagem mas é contido por Virgílio. Avarentos e pródigos empurram pesos enormes uns contra os outros em colisões eternas. Chegam ao pântano do rio Estige, onde os iracundos se agridem na superfície da água.",
+                personagens: [
+                    { nome: "Plutão", desc: "Na mitologia clássica, associado à riqueza subterrânea — guardião simbólico da avareza." },
+                    { nome: "Avarentos e pródigos", desc: "Dois grupos opostos que perverteram a relação certa com os bens materiais." }
+                ],
+                vocabulario: [
+                    { termo: "Fortuna", significado: "Virgílio explica que a Fortuna é uma inteligência ordenada por Deus para distribuir bens no mundo." },
+                    { termo: "Estige", significado: "Rio pantanoso da mitologia clássica." },
+                    { termo: "acídia", significado: "Tristeza/preguiça espiritual — a apatia que impede a pessoa de buscar o bem." }
+                ],
+                contexto: "Dante coloca 'muitos clérigos, papas e cardeais' entre os avarentos — uma crítica à corrupção da Igreja.",
+                versaoSimples: "Aqui tem duas turmas brigando: quem guardou dinheiro demais e quem gastou dinheiro demais. Depois, Dante vê um pântano onde as pessoas que viviam com raiva ficam brigando."
+            },
+            // Canto 8
+            {
+                numero: 8,
+                titulo: "A Chegada a Dite",
+                circulo: 5,
+                resumo: "Atravessando o Estige numa barca guiada por Flégias, Dante encontra Filipo Argenti, um florentino arrogante. A barca chega às muralhas da cidade de Dite, guardadas por demônios que se recusam a abrir os portões.",
+                personagens: [
+                    { nome: "Flégias", desc: "Figura mitológica, barqueiro do rio Estige — furioso e rápido." },
+                    { nome: "Filipo Argenti", desc: "Nobre florentino, rival político da família de Dante." },
+                    { nome: "Os demônios de Dite", desc: "Guardas que se recusam a deixar Virgílio e Dante entrarem." }
+                ],
+                vocabulario: [
+                    { termo: "Dite", significado: "Nome latino de Plutão/Hades, usado por Dante para nomear a cidade fortificada." },
+                    { termo: "Estige", significado: "O pântano-rio que circunda Dite." }
+                ],
+                contexto: "A reação raivosa de Dante contra Filipo Argenti é o único momento em que ele deseja ativamente o sofrimento de alguém.",
+                versaoSimples: "Dante atravessa um rio e encontra um homem arrogante que ele conhecia. Depois, eles chegam a uma cidade cercada de muralhas, cheia de demônios, que fecham o portão na cara deles."
+            },
+            // Canto 9
+            {
+                numero: 9,
+                titulo: "As Fúrias e o Anjo",
+                circulo: 5,
+                resumo: "Diante do portão fechado, aparecem as Fúrias, que ameaçam invocar a Medusa para petrificar Dante. A tensão se resolve com a chegada de um mensageiro celestial, que abre o portão de Dite com um simples toque.",
+                personagens: [
+                    { nome: "As Fúrias", desc: "Divindades da vingança na mitologia clássica — Tisífone, Megera e Alecto." },
+                    { nome: "Medusa", desc: "Monstro mitológico cujo olhar transforma em pedra quem a encara." },
+                    { nome: "O Mensageiro Celestial", desc: "Um anjo enviado do Céu que abre o portão sem esforço." }
+                ],
+                vocabulario: [
+                    { termo: "Fúrias/Erínias", significado: "Na mitologia, perseguem quem comete crimes graves." },
+                    { termo: "Medusa", significado: "Monstro cujo olhar transforma pessoas em pedra." }
+                ],
+                contexto: "A fácil vitória do anjo sobre os demônios reforça que o mal só existe dentro dos limites que Deus permite.",
+                versaoSimples: "Monstros aparecem e ameaçam mostrar pra Dante uma cabeça que transformaria ele em pedra. Virgílio tampa os olhos de Dante. Chega um anjo que abre o portão com um simples toque."
+            },
+            // Canto 10
+            {
+                numero: 10,
+                titulo: "Os Hereges — Farinata",
+                circulo: 6,
+                resumo: "Dante encontra túmulos abertos e em chamas, onde jazem os hereges. Um deles, Farinata degli Uberti, líder gibelino, se ergue orgulhoso do túmulo e discute política florentina com Dante.",
+                personagens: [
+                    { nome: "Farinata degli Uberti", desc: "Líder político gibelino do século XIII, inimigo histórico da família de Dante." },
+                    { nome: "Cavalcante dei Cavalcanti", desc: "Pai do poeta Guido Cavalcanti, amigo de Dante." }
+                ],
+                vocabulario: [
+                    { termo: "herege", significado: "Quem defende crenças contrárias ao dogma oficial da Igreja." },
+                    { termo: "epicurismo", significado: "Filosofia que defendia que a alma morre com o corpo." }
+                ],
+                contexto: "Farinata salvou Florença da destruição total, mesmo sendo do partido 'errado' — Dante reconhece grandeza mesmo em adversários.",
+                versaoSimples: "Aqui ficam pessoas que não acreditavam na vida após a morte. Dante encontra um político famoso da cidade dele, inimigo da sua família, mas mesmo assim conversa com respeito."
+            },
+            // Canto 11
+            {
+                numero: 11,
+                titulo: "O Mapa do Inferno",
+                circulo: 6,
+                resumo: "Para se proteger do mau cheiro, Dante e Virgílio param, e Virgílio explica toda a estrutura moral do Inferno: por que a violência é punida em três anéis, por que a fraude é pior que a violência.",
+                personagens: [
+                    { nome: "Virgílio", desc: "Atua como professor, organizando com lógica aristotélica toda a arquitetura moral do Inferno." }
+                ],
+                vocabulario: [
+                    { termo: "incontinência", significado: "Pecados 'mais leves' — falta de autocontrole diante de impulsos naturais." },
+                    { termo: "malícia", significado: "Categorias mais graves — o mal causado deliberadamente a outros." },
+                    { termo: "usura", significado: "Cobrar juros abusivos — condenada como violência contra a natureza." }
+                ],
+                contexto: "Este canto é um resumo da Ética a Nicômaco, de Aristóteles, filtrado pela teologia católica.",
+                versaoSimples: "Virgílio explica como o Inferno é organizado: lá em cima ficam os pecados de 'fraqueza'. Mais pra baixo ficam os de violência. E no fundo, os piores: os de enganação."
+            },
+            // Canto 12
+            {
+                numero: 12,
+                titulo: "O Minotauro e o Rio de Sangue",
+                circulo: 7,
+                resumo: "Guardando a descida ao sétimo círculo está o Minotauro. Os violentos contra o próximo ficam mergulhados no Flegetonte, um rio de sangue fervente, enquanto Centauros armados com flechas garantem a punição.",
+                personagens: [
+                    { nome: "Minotauro", desc: "Monstro mitológico, metade homem metade touro, símbolo da violência bruta." },
+                    { nome: "Centauros", desc: "Criaturas metade homem, metade cavalo, que patrulham o rio de sangue." }
+                ],
+                vocabulario: [
+                    { termo: "Flegetonte", significado: "Rio de sangue fervente da mitologia clássica." },
+                    { termo: "Centauro", significado: "Criatura mitológica meio-humana, meio-cavalo." }
+                ],
+                contexto: "A escolha de monstros híbridos reforça que a violência é a parte 'animal' vencendo a parte 'racional' do ser humano.",
+                versaoSimples: "Na entrada deste andar tem um monstro metade homem, metade touro. Depois, tem um rio de sangue fervendo onde ficam assassinos e tiranos."
+            },
+            // Canto 13
+            {
+                numero: 13,
+                titulo: "A Floresta dos Suicidas",
+                circulo: 7,
+                resumo: "Os que cometeram violência contra si mesmos foram transformados em árvores retorcidas. Dante quebra um galho e ouve a história de Pier delle Vigne, que se matou após ser injustamente acusado de traição.",
+                personagens: [
+                    { nome: "Pier delle Vigne", desc: "Conselheiro do imperador Frederico II, caiu em desgraça por acusações falsas e se suicidou." },
+                    { nome: "As Harpias", desc: "Monstros mitológicos com corpo de ave e rosto de mulher." }
+                ],
+                vocabulario: [
+                    { termo: "contrapasso", significado: "Quem rejeitou o próprio corpo perde a forma humana para sempre." },
+                    { termo: "Harpias", significado: "Monstros mitológicos que atormentam os suicidas comendo suas folhas." }
+                ],
+                contexto: "O suicídio era considerado um pecado gravíssimo — uma rejeição do dom da vida dado por Deus.",
+                versaoSimples: "As pessoas que tiraram a própria vida foram transformadas em árvores tortas. Dante conversa com uma dessas 'árvores', um homem que foi injustamente acusado e por desespero se matou."
+            },
+            // Canto 14
+            {
+                numero: 14,
+                titulo: "Os Blasfemos e a Chuva de Fogo",
+                circulo: 7,
+                resumo: "Uma planície de areia ardente recebe flocos de fogo eternos. Aqui ficam os violentos contra Deus (blasfemos), os violentos contra a natureza (sodomitas) e os violentos contra a arte (usurários).",
+                personagens: [
+                    { nome: "Capaneu", desc: "Guerreiro mitológico grego que desafiou os deuses — continua desafiando a Deus no Inferno." }
+                ],
+                vocabulario: [
+                    { termo: "blasfêmia", significado: "Ofensa direta a Deus." },
+                    { termo: "planície ardente", significado: "Terreno de areia em chamas sob chuva de fogo." }
+                ],
+                contexto: "Capaneu é um exemplo de soberba que nem o castigo eterno consegue quebrar.",
+                versaoSimples: "Aqui cai fogo do céu sem parar sobre uma areia quente. Ficam aqui as pessoas que xingaram e desafiaram Deus."
+            },
+            // Canto 15
+            {
+                numero: 15,
+                titulo: "Brunetto Latini",
+                circulo: 7,
+                resumo: "Dante reconhece seu antigo mentor intelectual, Brunetto Latini, correndo eternamente entre os violentos contra a natureza. A conversa é tocante: Brunetto prevê o exílio de Dante.",
+                personagens: [
+                    { nome: "Brunetto Latini", desc: "Escritor e político florentino, figura de grande influência intelectual na juventude de Dante." }
+                ],
+                vocabulario: [
+                    { termo: "sodomia", significado: "Categoria ampla de 'violência contra a natureza' na visão medieval." }
+                ],
+                contexto: "Dante mistura gratidão pessoal profunda com a certeza teológica de que seu mentor está condenado.",
+                versaoSimples: "Dante encontra um professor que ele admirava muito quando era jovem. Os dois conversam com carinho e respeito."
+            },
+            // Canto 16
+            {
+                numero: 16,
+                titulo: "O Chamado a Gerião",
+                circulo: 7,
+                resumo: "Dante encontra três nobres florentinos. Virgílio joga uma corda no abismo como sinal, e do fundo sobe voando Gerião, que servirá de montaria para a descida ao oitavo círculo.",
+                personagens: [
+                    { nome: "Gerião", desc: "Monstro híbrido com rosto de homem honesto, corpo de réptil e cauda de escorpião — símbolo da fraude." }
+                ],
+                vocabulario: [
+                    { termo: "Gerião", significado: "Personificação visual da Fraude — rosto gentil, corpo monstruoso." }
+                ],
+                contexto: "A aparência de Gerião é uma metáfora: a fraude sempre se disfarça de algo confiável.",
+                versaoSimples: "Dante conversa com três pessoas da sua cidade. Depois, um monstro estranho aparece voando — tem cara de gente boa, mas corpo de bicho perigoso."
+            },
+            // Canto 17
+            {
+                numero: 17,
+                titulo: "Voo até a Fraude",
+                circulo: 7,
+                resumo: "Dante observa os usurários, sentados com bolsas de dinheiro penduradas no pescoço. Depois, montado nas costas de Gerião, Dante desce voando em espiral pelo abismo até o oitavo círculo.",
+                personagens: [
+                    { nome: "Usurários", desc: "Banqueiros/emprestadores que cobravam juros abusivos." }
+                ],
+                vocabulario: [
+                    { termo: "usurário", significado: "Quem cobra juros excessivos — considerado pecado contra a ordem natural do trabalho." }
+                ],
+                contexto: "A crítica aos usurários reflete debates reais da economia medieval, quando a Igreja proibia formalmente a cobrança de juros.",
+                versaoSimples: "Dante vê banqueiros gananciosos sentados com bolsas de dinheiro. Depois, Dante e Virgílio sobem no monstro Gerião e descem voando até o próximo andar."
+            },
+            // Canto 18
+            {
+                numero: 18,
+                titulo: "As Primeiras Valas — Rufiões e Aduladores",
+                circulo: 8,
+                resumo: "Começa o oitavo círculo, Malebolge: dez fossos concêntricos. Na primeira vala, rufiões são chicoteados por demônios. Na segunda vala, aduladores ficam mergulhados em excremento.",
+                personagens: [
+                    { nome: "Vênedico Caccianemico", desc: "Nobre bolonhês, acusado de ter vendido a própria irmã." },
+                    { nome: "Jasão", desc: "Herói mitológico do velo de ouro, incluído por ter seduzido e abandonado mulheres." }
+                ],
+                vocabulario: [
+                    { termo: "Malebolge", significado: "Do italiano 'male' (mal) + 'bolge' (fossos) — nome do oitavo círculo." },
+                    { termo: "adulação", significado: "Elogio falso e excessivo usado para manipular." }
+                ],
+                contexto: "A partir daqui, o tom do poema fica mais grotesco, refletindo o desprezo de Dante pelos pecados de fraude.",
+                versaoSimples: "Começa um andar dividido em dez valas. Na primeira, pessoas que enganaram os outros são chicoteadas. Na segunda, os puxa-sacos ficam mergulhados em excremento."
+            },
+            // Canto 19
+            {
+                numero: 19,
+                titulo: "Os Simoníacos",
+                circulo: 8,
+                resumo: "Na terceira vala, os simoníacos — clérigos que venderam cargos religiosos por dinheiro — ficam enfiados de cabeça para baixo em buracos na rocha. Dante conversa com o Papa Nicolau III.",
+                personagens: [
+                    { nome: "Papa Nicolau III", desc: "Papa real (1277-1280), acusado de nepotismo e simonia." }
+                ],
+                vocabulario: [
+                    { termo: "simonia", significado: "Venda de cargos ou favores eclesiásticos por dinheiro." },
+                    { termo: "contrapasso", significado: "Quem inverteu os valores espirituais fica de cabeça para baixo." }
+                ],
+                contexto: "Este é um dos cantos mais politicamente ousados: Dante coloca um Papa no Inferno.",
+                versaoSimples: "Aqui ficam padres e papas que venderam cargos da Igreja por dinheiro. Ficam enfiados de cabeça pra baixo dentro de buracos, com os pés pegando fogo."
+            },
+            // Canto 20
+            {
+                numero: 20,
+                titulo: "Os Adivinhos",
+                circulo: 8,
+                resumo: "Na quarta vala, adivinhos e feiticeiros caminham lentamente com a cabeça virada para trás — punição irônica: quem tentou ver o futuro proibidamente, agora só pode ver para trás.",
+                personagens: [
+                    { nome: "Tirésias", desc: "Adivinho cego da mitologia grega." },
+                    { nome: "Manto", desc: "Filha de Tirésias, associada à fundação de Mântua." }
+                ],
+                vocabulario: [
+                    { termo: "adivinhação", significado: "Tentativa de prever o futuro por meios proibidos." },
+                    { termo: "contrapasso", significado: "Quem tentou ver o futuro agora só pode ver o passado." }
+                ],
+                contexto: "A imagem das cabeças viradas 180 graus é uma das mais visualmente marcantes da Comédia.",
+                versaoSimples: "Aqui ficam pessoas que tentaram prever o futuro com magia. Como castigo, andam com a cabeça virada pra trás."
+            },
+            // Canto 21
+            {
+                numero: 21,
+                titulo: "Os Corruptos e os Demônios Malebranche",
+                circulo: 8,
+                resumo: "Na quinta vala, políticos corruptos ficam mergulhados em piche fervente, vigiados por uma tropa de demônios chamados Malebranche. O líder Malacoda promete uma escolta segura.",
+                personagens: [
+                    { nome: "Malacoda", desc: "Chefe dos demônios Malebranche — seu nome significa 'má-cauda'." },
+                    { nome: "Os Malebranche", desc: "Esquadrão de doze demônios com nomes grotescos." }
+                ],
+                vocabulario: [
+                    { termo: "barataria", significado: "Corrupção política — uso de cargo público para ganho pessoal." },
+                    { termo: "Malebranche", significado: "'Más-garras' em italiano." }
+                ],
+                contexto: "Este canto tem um tom quase de comédia negra — uma sátira à corrupção política italiana.",
+                versaoSimples: "Aqui ficam políticos corruptos, mergulhados num lago de piche fervendo, vigiados por demônios engraçados e assustadores."
+            },
+            // Canto 22
+            {
+                numero: 22,
+                titulo: "A Fuga de Ciampolo",
+                circulo: 8,
+                resumo: "Na quinta vala, um condenado chamado Ciampolo engana os demônios com uma artimanha esperta e mergulha de volta no piche, escapando.",
+                personagens: [
+                    { nome: "Ciampolo de Navarra", desc: "Ex-servidor da corte de Navarra, corrupto, mas astuto." }
+                ],
+                vocabulario: [
+                    { termo: "contrapasso", significado: "Corruptos que agiam 'nas sombras' ficam mergulhados numa substância escura." }
+                ],
+                contexto: "A esperteza de Ciampolo mostra que a fraude continua sendo praticada até no Inferno.",
+                versaoSimples: "Um dos condenados é bem esperto e engana os demônios pra escapar de volta pro piche."
+            },
+            // Canto 23
+            {
+                numero: 23,
+                titulo: "Os Hipócritas",
+                circulo: 8,
+                resumo: "Fugindo dos Malebranche, Dante e Virgílio chegam à sexta vala. Os hipócritas caminham com capas de chumbo douradas por fora e pesadíssimas por dentro. Caifás, o sumo sacerdote que condenou Jesus, está crucificado no chão.",
+                personagens: [
+                    { nome: "Caifás", desc: "Sumo sacerdote judeu do Novo Testamento, responsável por recomendar a morte de Jesus." },
+                    { nome: "Frades Gaudentes", desc: "Frades bolonheses que agiram com hipocrisia política." }
+                ],
+                vocabulario: [
+                    { termo: "hipocrisia", significado: "Fingir virtude para esconder más intenções." },
+                    { termo: "contrapasso", significado: "Capas douradas por fora (aparência), pesadas por dentro (falsidade)." }
+                ],
+                contexto: "Caifás representa a hipocrisia religiosa/política suprema.",
+                versaoSimples: "Aqui ficam os hipócritas. Usam capas que brilham como ouro por fora, mas são pesadíssimas de chumbo por dentro."
+            },
+            // Canto 24
+            {
+                numero: 24,
+                titulo: "Os Ladrões (parte 1)",
+                circulo: 8,
+                resumo: "Dante e Virgílio escalam até a sétima vala, onde ladrões são perseguidos por serpentes. Vanni Fucci sofre transformações grotescas quando é picado — incinerando-se e renascendo das cinzas.",
+                personagens: [
+                    { nome: "Vanni Fucci", desc: "Ladrão histórico violento, que faz uma profecia sombria sobre Florença." }
+                ],
+                vocabulario: [
+                    { termo: "contrapasso", significado: "Ladrões perdem a própria forma corporal, transformados pelas serpentes." }
+                ],
+                contexto: "A cena da incineração é uma referência invertida ao mito da fênix.",
+                versaoSimples: "Ladrões são perseguidos por cobras venenosas. Um deles é picado, pega fogo, vira cinza — e volta a sofrer tudo de novo."
+            },
+            // Canto 25
+            {
+                numero: 25,
+                titulo: "Os Ladrões (parte 2) — Transformações",
+                circulo: 8,
+                resumo: "A punição se intensifica com cenas bizarras de fusão entre corpos humanos e répteis. Dante testemunha transformações onde ladrões e serpentes trocam de forma.",
+                personagens: [
+                    { nome: "Caco", desc: "Centauro/monstro mitológico, ladrão de gado morto por Hércules." }
+                ],
+                vocabulario: [
+                    { termo: "metamorfose", significado: "Transformação de forma — ladrões perdem a estabilidade da própria identidade." }
+                ],
+                contexto: "Dante afirma ter superado os poetas clássicos Ovídio e Lucano em descrições de transformação corporal.",
+                versaoSimples: "Os ladrões se misturam com cobras, trocando de corpo, perdendo a própria identidade."
+            },
+            // Canto 26
+            {
+                numero: 26,
+                titulo: "Ulisses, o Conselheiro Fraudulento",
+                circulo: 8,
+                resumo: "Na oitava vala, conselheiros fraudulentos ficam envoltos em línguas de fogo. Dante encontra Ulisses, que conta como convenceu sua tripulação a navegar além dos limites do mundo.",
+                personagens: [
+                    { nome: "Ulisses", desc: "Herói mitológico grego, condenado por usar sua astúcia para enganar." }
+                ],
+                vocabulario: [
+                    { termo: "'fatti non foste a viver come bruti'", significado: "'não fostes feitos para viver como brutos, mas para buscar virtude e conhecimento'." },
+                    { termo: "línguas de fogo", significado: "Quem usou a língua para enganar fica dentro da própria chama." }
+                ],
+                contexto: "O discurso de Ulisses é um dos mais inspiradores da literatura, mas para Dante representa orgulho intelectual sem limites.",
+                versaoSimples: "Aqui ficam pessoas que usaram a inteligência pra enganar. Dante encontra Ulisses, que conta como convenceu sua tripulação a navegar até onde ninguém nunca foi."
+            },
+            // Canto 27
+            {
+                numero: 27,
+                titulo: "Guido da Montefeltro",
+                circulo: 8,
+                resumo: "Guido da Montefeltro, um líder militar que se tornou frade, foi convencido pelo Papa Bonifácio VIII a dar um conselho fraudulento. Ao morrer, um demônio reivindicou sua alma.",
+                personagens: [
+                    { nome: "Guido da Montefeltro", desc: "Líder militar e depois frade franciscano, manipulado pelo Papa." },
+                    { nome: "Papa Bonifácio VIII", desc: "Papa contemporâneo de Dante, citado com desprezo." }
+                ],
+                vocabulario: [
+                    { termo: "absolvição antecipada", significado: "Promessa de perdoar um pecado antes de cometê-lo — teologicamente inválida." }
+                ],
+                contexto: "Mais uma crítica à corrupção do papado, mostrando como o poder espiritual pode arruinar almas.",
+                versaoSimples: "Um homem que virou religioso foi convencido por um papa a dar um conselho desonesto. Na morte, um demônio apareceu e levou sua alma."
+            },
+            // Canto 28
+            {
+                numero: 28,
+                titulo: "Os Semeadores de Discórdia",
+                circulo: 8,
+                resumo: "Na nona vala, quem causou divisões é mutilado por um demônio. Muhammad aparece com o corpo rasgado, e Bertran de Born carrega a própria cabeça na mão.",
+                personagens: [
+                    { nome: "Muhammad", desc: "Figura vista como causadora de cisma na visão medieval cristã." },
+                    { nome: "Bertran de Born", desc: "Trovador que incitou conflito entre rei e filho." }
+                ],
+                vocabulario: [
+                    { termo: "cisma", significado: "Divisão dentro de um grupo religioso ou político." },
+                    { termo: "contrapasso", significado: "Quem separou o que deveria estar unido tem o próprio corpo separado." }
+                ],
+                contexto: "A representação de Muhammad reflete a visão distorcida da Europa cristã medieval sobre o Islã.",
+                versaoSimples: "Aqui ficam pessoas que causaram brigas. Um demônio corta os corpos delas sem parar — porque na vida elas 'cortaram' a união entre pessoas."
+            },
+            // Canto 29
+            {
+                numero: 29,
+                titulo: "A Décima Vala — Os Falsificadores",
+                circulo: 8,
+                resumo: "Dante chega à décima vala, onde os falsificadores sofrem doenças terríveis. Alquimistas que fabricavam ouro falso são punidos com doenças de pele.",
+                personagens: [
+                    { nome: "Geri del Bello", desc: "Parente real de Dante, morto em uma vingança de sangue." },
+                    { nome: "Griffolino e Capocchio", desc: "Alquimistas que fraudavam pessoas." }
+                ],
+                vocabulario: [
+                    { termo: "alquimia", significado: "Prática pseudocientífica que buscava transformar metais em ouro." },
+                    { termo: "falsificação", significado: "Categoria final da fraude: enganar através de identidades ou moedas falsas." }
+                ],
+                contexto: "A décima vala reúne os tipos mais 'técnicos' de fraude.",
+                versaoSimples: "Aqui ficam os falsificadores. Os alquimistas que fingiam transformar metal em ouro sofrem com doenças de pele."
+            },
+            // Canto 30
+            {
+                numero: 30,
+                titulo: "Falsificadores de Identidade, Moeda e Palavra",
+                circulo: 8,
+                resumo: "Falsificadores de identidade enlouquecem e mordem os outros. Mestre Adamo, falsificador de moeda, está inchado e sedento. Sinão, que mentiu sobre o Cavalo de Troia, briga com ele.",
+                personagens: [
+                    { nome: "Mestre Adamo", desc: "Falsificador de moedas florentinas, castigado com hidropisia." },
+                    { nome: "Sinão", desc: "Grego que mentiu para os troianos sobre o Cavalo de Troia." }
+                ],
+                vocabulario: [
+                    { termo: "hidropisia", significado: "Doença de retenção de líquidos — punição de Mestre Adamo." },
+                    { termo: "contrapasso", significado: "Quem encheu moedas de metal falso fica 'inchado' e sem substância." }
+                ],
+                contexto: "Virgílio repreende Dante por assistir à briga entre condenados com prazer mórbido.",
+                versaoSimples: "Falsificadores de identidade mordem os outros. Um falsificador de dinheiro está todo inchado e com sede. Ele e um mentiroso famoso começam a brigar."
+            },
+            // Canto 31
+            {
+                numero: 31,
+                titulo: "O Poço dos Gigantes",
+                circulo: 8,
+                resumo: "Dante e Virgílio chegam à borda do poço central. Gigantes mitológicos e bíblicos estão presos da cintura para cima. Anteu, sem correntes, pega os dois viajantes e os deposita no nono círculo.",
+                personagens: [
+                    { nome: "Nimrod", desc: "Figura bíblica associada à Torre de Babel." },
+                    { nome: "Anteu", desc: "Gigante mitológico que ajuda Dante a descer." }
+                ],
+                vocabulario: [
+                    { termo: "gigantes", significado: "Seres de força imensa e orgulho excessivo." },
+                    { termo: "Torre de Babel", significado: "Referência bíblica à confusão das línguas." }
+                ],
+                contexto: "Os gigantes marcam a transição para o Inferno mais profundo.",
+                versaoSimples: "Dante e Virgílio chegam a um poço guardado por gigantes. Um deles pega os dois e os coloca no fundo do Inferno."
+            },
+            // Canto 32
+            {
+                numero: 32,
+                titulo: "O Gelo de Cocito — Caína e Antenora",
+                circulo: 9,
+                resumo: "No fundo do Inferno há um lago congelado: Cocito. O pior castigo é o frio extremo. Começam os traidores, divididos em zonas: Caína (traidores de parentes) e Antenora (traidores da pátria).",
+                personagens: [
+                    { nome: "Bocca degli Abati", desc: "Traidor florentino que cortou a mão do porta-bandeira do próprio exército." }
+                ],
+                vocabulario: [
+                    { termo: "Cocito", significado: "'Rio do lamento' — na Comédia, é um lago congelado." },
+                    { termo: "Caína", significado: "Nome da primeira zona, batizada com o nome de Caim." },
+                    { termo: "Antenora", significado: "Segunda zona, batizada com o nome do troiano Antenor." }
+                ],
+                contexto: "A escolha do gelo como punição máxima: a traição é o oposto do amor, que é calor.",
+                versaoSimples: "No fundo do Inferno não tem fogo, tem gelo. Traidores de família e traidores da pátria ficam presos no gelo até o pescoço."
+            },
+            // Canto 33
+            {
+                numero: 33,
+                titulo: "O Conde Ugolino",
+                circulo: 9,
+                resumo: "Dante encontra o Conde Ugolino, eternamente roendo o crânio do arcebispo Ruggieri. Ugolino conta como foi trancado numa torre com seus filhos e netos, e todos morreram de fome.",
+                personagens: [
+                    { nome: "Conde Ugolino", desc: "Nobre de Pisa, condenado à morte por fome numa torre." },
+                    { nome: "Arcebispo Ruggieri", desc: "Responsável pela prisão e morte de Ugolino." }
+                ],
+                vocabulario: [
+                    { termo: "Torre da Fome", significado: "Torre em Pisa onde Ugolino e seus descendentes foram trancados." },
+                    { termo: "'poscia, più che 'l dolor, poté 'l digiuno'", significado: "'Depois, mais que a dor, pôde o jejum' — verso ambíguo sobre possível canibalismo." }
+                ],
+                contexto: "Este é o momento mais devastador emocionalmente de toda a Comédia.",
+                versaoSimples: "Dante encontra um homem roendo a cabeça de outro. Ele conta a história triste de como foi preso com os filhos e netos, e todos morreram de fome."
+            },
+            // Canto 34
+            {
+                numero: 34,
+                titulo: "Lúcifer e a Saída para as Estrelas",
+                circulo: 9,
+                resumo: "No centro do Inferno, Dante vê Lúcifer: um gigante com três rostos e seis asas geladas. Suas três bocas mastigam Judas Iscariotes, Brutus e Cássio. Virgílio e Dante escalam o corpo de Lúcifer e emergem do outro lado do mundo.",
+                personagens: [
+                    { nome: "Lúcifer", desc: "O anjo que se rebelou contra Deus — reduzido a uma máquina de mastigar." },
+                    { nome: "Judas Iscariotes", desc: "Discípulo que traiu Jesus Cristo." },
+                    { nome: "Brutus e Cássio", desc: "Senadores romanos que assassinaram Júlio César." }
+                ],
+                vocabulario: [
+                    { termo: "'l'imperador del doloroso regno'", significado: "'O imperador do reino da dor' — Lúcifer." },
+                    { termo: "'e quindi uscimmo a riveder le stelle'", significado: "'E dali saímos a rever as estrelas' — verso final do Inferno." }
+                ],
+                contexto: "Lúcifer não é um vilão carismático — é grotesco, imóvel, preso pela própria fúria. O verso final marca a virada para o Purgatório.",
+                versaoSimples: "No centro do Inferno, Dante vê Lúcifer: um monstro gigante com três rostos e seis asas. Nas suas três bocas, ele mastiga os três maiores traidores da história. Dante e Virgílio escalam o corpo de Lúcifer, passam pelo centro da Terra e saem do outro lado do mundo — voltando a ver as estrelas."
             }
         ];
 
@@ -954,7 +1045,7 @@
             }
 
             if (cantosFiltrados.length === 0) {
-                container.innerHTML = '<p style="text-align:center;color:#6b5d4e;padding:2rem 0;">Nenhum canto encontrado.</p>';
+                container.innerHTML = '<p style="text-align:center;color:#6b5d4e;padding:2rem 0;">Nenhum canto encontrado com este filtro.</p>';
                 return;
             }
 
@@ -962,7 +1053,7 @@
             cantosFiltrados.forEach(canto => {
                 const cor = getCirculoCor(canto.circulo);
                 const nomeCirculo = getCirculoNome(canto.circulo);
-                
+
                 html += `
                     <div class="card-canto" style="border-left-color: ${cor};">
                         <div class="cabecalho-canto">
