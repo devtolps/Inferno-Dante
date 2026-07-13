@@ -136,6 +136,197 @@ hr.divider{border:none; height:1px; background:linear-gradient(90deg, transparen
 .faixa.dark-text{color:#f4ead9;}
 .mapa-hint{text-align:center; color:var(--ink-faint); font-size:13.5px; margin:18px 0 8px; font-style:italic;}
 
+/* ---------- MODO LEITURA (split-view) ---------- */
+.reading-section{padding-top:20px;}
+.reading-toolbar{
+  display:flex; align-items:center; gap:10px; margin-bottom:18px;
+}
+.rail{
+  display:flex; gap:6px; overflow-x:auto; padding:6px 2px; scrollbar-width:thin;
+  flex:1;
+}
+.rail::-webkit-scrollbar{height:5px;}
+.rail::-webkit-scrollbar-thumb{background:var(--line); border-radius:4px;}
+.rail-pill{
+  position:relative;
+  flex-shrink:0; width:34px; height:34px; border-radius:50%; border:1px solid var(--line);
+  background:var(--bg-2); color:var(--ink-faint); font-family:'Cinzel',serif; font-size:11px;
+  display:flex; align-items:center; justify-content:center; cursor:pointer; transition:all .2s;
+}
+.rail-pill:hover{border-color:var(--gold);}
+.rail-pill.active{background:var(--ember); color:#fff; border-color:var(--ember); box-shadow:0 0 12px rgba(193,68,14,.5);}
+.rail-pill.has-text::after{
+  content:''; position:absolute; bottom:1px; right:1px; width:6px; height:6px; border-radius:50%;
+  background:var(--gold-bright); border:1px solid var(--bg-2);
+}
+.rail-pill.active.has-text::after{background:#fff;}
+
+.ca-nav{display:flex; justify-content:space-between; gap:12px; margin-top:8px;}
+.ca-nav button{
+  background:none; border:1px solid var(--line); color:var(--ink-dim); font-family:'Cinzel',serif; font-size:11px;
+  letter-spacing:0.05em; text-transform:uppercase; padding:11px 16px; border-radius:2px; cursor:pointer; transition:all .2s;
+}
+.ca-nav button:hover:not(:disabled){border-color:var(--gold); color:var(--gold-bright);}
+.ca-nav button:disabled{opacity:0.3; cursor:default;}
+
+.reading-grid{
+  display:grid; grid-template-columns:1fr 360px; gap:26px; align-items:start;
+}
+@media (max-width:900px){ .reading-grid{grid-template-columns:1fr;} }
+
+.reading-main{
+  background:var(--bg-2); border:1px solid var(--line); border-radius:4px;
+  height:78vh; min-height:520px; overflow-y:auto; padding:0;
+  scroll-behavior:smooth;
+}
+.reading-main::-webkit-scrollbar{width:8px;}
+.reading-main::-webkit-scrollbar-thumb{background:var(--line); border-radius:4px;}
+
+.canto-article{padding:44px 40px 60px; border-bottom:1px dashed var(--line); scroll-margin-top:20px;}
+.canto-article:last-child{border-bottom:none;}
+@media (max-width:600px){ .canto-article{padding:30px 20px 44px;} }
+
+.ca-col{max-width:600px; margin:0 auto;}
+
+.ca-head{margin-bottom:22px;}
+.ca-head .ca-eyebrow{font-family:'Cinzel',serif; font-size:12px; letter-spacing:0.2em; text-transform:uppercase; color:var(--ember-bright);}
+.ca-head h3{font-size:clamp(24px,3.4vw,32px); color:var(--ink); margin-top:6px;}
+.ca-head small{display:block; color:var(--ink-faint); font-style:italic; font-family:'Cormorant Garamond',serif; font-size:15px; margin-top:6px;}
+
+.ca-img{
+  margin:0 0 26px; border-radius:2px; overflow:hidden; border:1px solid var(--line); background:#0c0906;
+  display:flex; flex-direction:column; align-items:center; justify-content:center; max-height:360px;
+}
+.ca-img img{width:auto; max-width:100%; height:auto; max-height:360px; object-fit:contain; display:block; filter:sepia(0.2) contrast(1.05);}
+.ca-img.is-emblem{padding:26px 0; max-height:none;}
+.ca-img.is-emblem svg{width:52px; height:52px; opacity:0.85;}
+.ca-img figcaption{width:100%; font-size:12px; color:var(--ink-faint); padding:6px 10px; background:rgba(0,0,0,0.3); font-style:italic; text-align:center;}
+
+.ca-text p{
+  font-family:'Cormorant Garamond', 'EB Garamond', serif; font-size:19px; line-height:1.8;
+  color:var(--ink); margin:0 0 20px; text-align:justify; hyphens:auto;
+}
+.ca-text p:first-of-type::first-letter{
+  font-family:'Cinzel Decorative', serif; font-size:52px; float:left; line-height:0.8;
+  padding:6px 8px 0 0; color:var(--gold-bright);
+}
+
+.ca-placeholder{
+  border:1px dashed var(--line); border-radius:3px; padding:24px 24px; background:rgba(0,0,0,0.15);
+}
+.ca-placeholder .ph-tag{font-family:'Cinzel',serif; font-size:11px; letter-spacing:0.1em; text-transform:uppercase; color:var(--ember-bright); margin-bottom:10px; display:block;}
+.ca-placeholder p{color:var(--ink-dim); font-size:16.5px; margin:0 0 12px;}
+.ca-placeholder .simples-box{margin-top:14px;}
+
+.adapt-note{
+  font-size:13px; color:var(--ink-faint); font-style:italic; margin-top:26px; padding-top:16px;
+  border-top:1px solid var(--line);
+}
+
+/* ---------- LEITURA LIDA + PROGRESSO ---------- */
+.read-toggle{
+  display:flex; align-items:center; gap:10px; margin:30px 0 4px; cursor:pointer; user-select:none;
+  padding:12px 14px; border:1px solid var(--line); border-radius:3px; background:rgba(201,162,74,0.05); transition:border-color .2s;
+}
+.read-toggle:hover{border-color:var(--gold);}
+.read-toggle input{width:17px; height:17px; accent-color:var(--ember); cursor:pointer;}
+.read-toggle span{font-family:'Cinzel',serif; font-size:11.5px; letter-spacing:0.05em; text-transform:uppercase; color:var(--ink-dim);}
+.canto-article.is-read .read-toggle{border-color:var(--gold); background:rgba(201,162,74,0.1);}
+.canto-article.is-read .read-toggle span{color:var(--gold-bright);}
+
+.progress-block{margin:0 0 18px;}
+.progress-label{display:flex; justify-content:space-between; align-items:baseline; font-family:'Cinzel',serif; font-size:11.5px; letter-spacing:0.05em; text-transform:uppercase; color:var(--ink-faint); margin-bottom:8px;}
+.progress-label b{color:var(--gold-bright); font-size:13px;}
+.progress-bar{height:8px; background:var(--bg-2); border:1px solid var(--line); border-radius:4px; overflow:hidden;}
+.progress-fill{height:100%; width:0%; background:linear-gradient(90deg, var(--ember), var(--gold-bright)); transition:width .5s ease;}
+
+.rail-pill.is-read{box-shadow:inset 0 0 0 2px var(--gold-bright);}
+
+/* ---------- POST-IT (anotações por canto) ---------- */
+.note-wrap{margin-top:26px;}
+.note-label{font-family:'Cinzel',serif; font-size:11px; letter-spacing:0.12em; text-transform:uppercase; color:var(--ink-faint); margin-bottom:10px; display:block;}
+.note-empty-btn{
+  width:100%; border:1px dashed var(--line); background:rgba(0,0,0,0.1); color:var(--ink-faint);
+  font-family:'Cormorant Garamond',serif; font-style:italic; font-size:15.5px; padding:18px; border-radius:3px;
+  cursor:pointer; transition:all .2s;
+}
+.note-empty-btn:hover{border-color:var(--gold); color:var(--gold-bright); background:rgba(201,162,74,0.06);}
+
+.postit{
+  position:relative; padding:18px 18px 46px; border-radius:2px; color:#1e1710;
+  box-shadow:0 10px 22px rgba(0,0,0,0.4), 0 1px 0 rgba(255,255,255,0.15) inset;
+  transform:rotate(-0.5deg);
+}
+.postit textarea{
+  width:100%; min-height:100px; background:transparent; border:none; resize:vertical;
+  font-family:'Cormorant Garamond',serif; font-size:17px; line-height:1.5; color:#1e1710; outline:none;
+}
+.postit textarea::placeholder{color:rgba(30,23,16,0.45);}
+.postit-toolbar{position:absolute; bottom:12px; left:18px; right:18px; display:flex; align-items:center; justify-content:space-between;}
+.postit-swatches{display:flex; gap:7px;}
+.postit-swatch{width:16px; height:16px; border-radius:50%; cursor:pointer; border:2px solid rgba(0,0,0,0.18); padding:0;}
+.postit-swatch.active{border-color:#1e1710; box-shadow:0 0 0 1px rgba(255,255,255,0.5);}
+.postit-swatch.gold{background:#e8cf8a;}
+.postit-swatch.ember{background:#e3ab80;}
+.postit-swatch.sage{background:#b7c8a0;}
+.postit-swatch.dusk{background:#a7bcd4;}
+.postit-swatch.rose{background:#dfb0c0;}
+.postit.gold{background:#e8cf8a;}
+.postit.ember{background:#e3ab80;}
+.postit.sage{background:#b7c8a0;}
+.postit.dusk{background:#a7bcd4;}
+.postit.rose{background:#dfb0c0;}
+.postit-remove{
+  background:none; border:none; cursor:pointer; font-family:'Cinzel',serif; font-size:10.5px;
+  letter-spacing:0.06em; text-transform:uppercase; color:rgba(30,23,16,0.55); padding:4px 6px;
+}
+.postit-remove:hover{color:rgba(30,23,16,0.9);}
+
+/* ---------- ASIDE (painel de ferramentas contextual) ---------- */
+.reading-aside{
+  height:74vh; min-height:480px; display:flex; flex-direction:column; gap:14px;
+  position:sticky; top:80px;
+}
+.aside-toggle{display:none;}
+@media (max-width:900px){
+  .reading-aside{
+    position:fixed; inset:auto 0 0 0; height:0; overflow:hidden; z-index:80;
+    background:var(--bg-2); border-top:1px solid var(--line); border-radius:12px 12px 0 0;
+    transition:height .3s ease; padding:0;
+  }
+  .reading-aside.open{height:78vh; padding:16px;}
+  .aside-toggle{
+    display:flex; align-items:center; justify-content:center; gap:8px; width:100%;
+    background:var(--ember); color:#fff; border:none; padding:13px; border-radius:3px; margin-bottom:14px;
+    font-family:'Cinzel',serif; font-size:12px; letter-spacing:0.08em; text-transform:uppercase; cursor:pointer;
+    position:sticky; bottom:10px; z-index:81;
+  }
+}
+
+.now-card{
+  background:var(--bg-2); border:1px solid var(--line); border-left:4px solid var(--gold); border-radius:3px; padding:16px 18px;
+}
+.now-card .nc-eyebrow{font-family:'Cinzel',serif; font-size:10.5px; letter-spacing:0.14em; text-transform:uppercase; color:var(--ink-faint);}
+.now-card h4{font-size:16px; margin-top:6px; color:var(--gold-bright);}
+.now-card small{color:var(--ink-dim); font-style:italic; font-family:'Cormorant Garamond',serif; display:block; margin-top:3px;}
+
+.mini-funil{display:flex; flex-direction:column; gap:2px; background:var(--bg-2); border:1px solid var(--line); border-radius:3px; padding:12px;}
+.mini-faixa{
+  height:16px; border-radius:2px; opacity:0.35; transition:opacity .2s, transform .2s; cursor:pointer;
+}
+.mini-faixa.active{opacity:1; transform:scaleX(1.02);}
+
+.aside-tools{
+  flex:1; overflow-y:auto; background:var(--bg-2); border:1px solid var(--line); border-radius:3px; padding:16px 18px;
+}
+.aside-tools::-webkit-scrollbar{width:6px;}
+.aside-tools::-webkit-scrollbar-thumb{background:var(--line); border-radius:4px;}
+.aside-tools .tabs{margin-bottom:14px;}
+.aside-tools .tab-btn{font-size:10.5px; padding:7px 10px;}
+.aside-tools .tab-panel p{font-size:15px;}
+.aside-tools .pchar b{font-size:14px;}
+.aside-tools .vocab-list li{font-size:14.5px;}
+
 /* ---------- LISTA DE CANTOS ---------- */
 .group-header{
   margin:56px 0 18px; padding:18px 22px; border-radius:3px;
@@ -163,10 +354,13 @@ hr.divider{border:none; height:1px; background:linear-gradient(90deg, transparen
 .canto-body{max-height:0; overflow:hidden; transition:max-height .35s ease;}
 .canto-body-inner{padding:0 22px 26px;}
 
-.canto-img{margin:6px 0 20px; border-radius:2px; overflow:hidden; border:1px solid var(--line); height:320px; background:#0c0906;}
-.canto-img img{width:100%; height:100%; display:block; object-fit:cover; object-position:center; filter:sepia(0.25) contrast(1.05);}
-@media (max-width:600px){ .canto-img{height:220px;} }
-.canto-img figcaption{font-size:12.5px; color:var(--ink-faint); padding:6px 10px; background:rgba(0,0,0,0.3); font-style:italic;}
+.canto-img{
+  margin:6px 0 20px; border-radius:2px; overflow:hidden; border:1px solid var(--line); background:#0c0906;
+  display:flex; flex-direction:column; align-items:center; justify-content:center; max-height:380px;
+}
+.canto-img img{width:auto; max-width:100%; height:auto; max-height:380px; object-fit:contain; display:block; filter:sepia(0.25) contrast(1.05);}
+@media (max-width:600px){ .canto-img{max-height:280px;} .canto-img img{max-height:280px;} }
+.canto-img figcaption{width:100%; font-size:12.5px; color:var(--ink-faint); padding:6px 10px; background:rgba(0,0,0,0.3); font-style:italic; text-align:center;}
 
 .emblem{
   width:100%; height:130px; border-radius:2px; margin:6px 0 20px; display:flex; align-items:center; justify-content:center;
@@ -214,10 +408,11 @@ footer .credit{font-family:'Cinzel',serif; font-size:11px; letter-spacing:0.1em;
       Descida
     </a>
     <div class="navlinks">
+      <a href="#leitura">Leitura</a>
       <a href="#como-usar">Como Usar</a>
       <a href="#contexto">Contexto</a>
       <a href="#mapa">Mapa</a>
-      <a href="#cantos">Os Cantos</a>
+      <a href="#cantos">Índice Completo</a>
     </div>
   </div>
 </nav>
@@ -226,13 +421,48 @@ footer .credit{font-family:'Cinzel',serif; font-size:11px; letter-spacing:0.1em;
   <div class="wrap">
     <div class="eyebrow">Guia de leitura acompanhada</div>
     <h1>O <em>Inferno</em> de Dante,<br>canto a canto</h1>
-    <p class="lede">"No meio do caminho desta vida, me vi perdido numa selva escura." Um mapa para não se perder você também — resumo, vocabulário, contexto histórico e a versão simples de cada um dos 34 cantos.</p>
+    <p class="lede">"No meio do caminho desta vida, me vi perdido numa selva escura." Leia o poema inteiro aqui, canto a canto, em prosa contemporânea — com mapa, personagens, vocabulário e contexto sempre à mão, ao lado do texto.</p>
     <div class="cta-row">
-      <a href="#como-usar" class="btn btn-primary">Como usar este guia</a>
-      <a href="#cantos" class="btn btn-ghost">Ir direto ao Canto I</a>
+      <a href="#leitura" class="btn btn-primary">Começar a leitura</a>
+      <a href="#como-usar" class="btn btn-ghost">Como usar este guia</a>
     </div>
   </div>
 </header>
+
+<hr class="divider">
+
+<!-- MODO LEITURA (split-view) -->
+<section id="leitura" class="reading-section">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="eyebrow">Modo leitura</div>
+      <h2>O Inferno, sem precisar do livro físico</h2>
+      <p>Navegue pelos 34 cantos abaixo. À direita, as ferramentas do guia se atualizam sozinhas conforme você lê ou muda de canto.</p>
+    </div>
+
+    <div class="progress-block">
+      <div class="progress-label"><span>Progresso de leitura</span><b id="progress-text">0 de 34 lidos — 0%</b></div>
+      <div class="progress-bar"><div class="progress-fill" id="progress-fill"></div></div>
+    </div>
+
+    <div class="reading-toolbar">
+      <div class="rail" id="rail"></div>
+    </div>
+
+    <div class="reading-grid">
+      <div class="reading-main" id="reading-main"></div>
+
+      <aside class="reading-aside" id="reading-aside">
+        <button class="aside-toggle" id="aside-toggle" type="button">☰ Ferramentas do canto atual</button>
+        <div class="now-card" id="now-card"></div>
+        <div class="mini-funil" id="mini-funil"></div>
+        <div class="aside-tools" id="aside-tools"></div>
+      </aside>
+    </div>
+
+    <p class="adapt-note">Nota sobre o texto: os cantos completos abaixo são uma releitura/adaptação original em prosa contemporânea, escrita especialmente para este guia — não é uma tradução licenciada reproduzida de nenhuma edição publicada. Os cantos ainda não adaptados na íntegra mostram, por enquanto, o resumo detalhado e a versão simples.</p>
+  </div>
+</section>
 
 <hr class="divider">
 
@@ -351,6 +581,21 @@ const grupos = [
 const cantos = [
 {n:1, grupo:'prologo', titulo:'A selva escura', local:'Fora do Inferno, ao pé de uma colina',
   img: WIKI('Gustave Doré - Dante Alighieri - Inferno - Plate 1 (I found myself within a forest dark...).jpg'),
+  resumoRapido:'Perdido numa floresta escura, Dante é barrado por três feras ao tentar subir uma colina — até que a sombra de Virgílio aparece e propõe outro caminho.',
+  textoModerno:[
+    'Cheguei à metade da minha vida sem perceber como isso aconteceu. Um dia me dei conta de que estava andando por uma floresta escura, e de que havia perdido, em algum ponto que não sei precisar, o caminho certo. É difícil até descrever aquele lugar: uma mata fechada, áspera, tão espessa que só de lembrar dela sinto o mesmo aperto no peito. Era quase tão amargo quanto a própria morte — mas, para que o bem que encontrei ali também seja contado, vou falar de tudo o que vi.',
+    'Não sei explicar direito como entrei ali. Estava tão tomado de sono, tão confuso, que em algum momento simplesmente abandonei o caminho verdadeiro sem perceber. Só sei que, quando finalmente cheguei ao pé de uma colina — bem no ponto em que aquele vale escuro terminava, o mesmo vale que tinha me apertado o coração de medo —, olhei para cima.',
+    'E vi que o topo da colina já estava vestido com a luz do sol nascente, aquele mesmo sol que guia qualquer pessoa por qualquer caminho certo. Isso aliviou um pouco o medo que tinha ficado represado dentro de mim durante aquela noite tão angustiada. E, como alguém que sai do mar quase se afogando e, já na praia, se vira para olhar para trás, para a água perigosa de onde escapou, também eu, ainda com a mente fugindo, me virei para olhar de novo para aquele caminho que nunca deixou ninguém vivo sair dele.',
+    'Descansei um pouco o corpo cansado e comecei a subir pela encosta deserta, sempre com o pé mais firme mais baixo que o outro, como quem sobe com cuidado. E foi quase no começo da subida que apareceu, ágil e veloz, uma onça com o pelo todo manchado. Ela não saía da minha frente — pelo contrário, atravessava meu caminho de um jeito que, várias vezes, pensei em desistir e voltar. Era cedo da manhã, o sol subia acompanhado das mesmas estrelas que estavam com ele quando o amor divino pôs em movimento, pela primeira vez, todas as coisas belas do mundo. Isso, e a hora agradável, e a estação do ano, me davam alguma esperança de escapar daquele bicho de pelo tão colorido. Mas essa esperança não durou muito.',
+    'Porque, de repente, apareceu um leão. Vinha na minha direção com a cabeça erguida e uma fome tão feroz que até o próprio ar parecia tremer diante dele. E, atrás dele, uma loba: magra até os ossos, mas carregada de todos os desejos possíveis, uma fome que já tinha feito sofrer muita gente antes de mim. Só de olhar para ela senti um peso tão grande que perdi toda a esperança de conseguir chegar ao topo da colina.',
+    'E, como alguém que ganhou dinheiro com alegria e depois, quando chega a hora de perder tudo, se entrega inteiro à tristeza e ao choro, assim fiquei eu diante daquele bicho inquieto: ele avançava devagar, na minha direção, empurrando-me de volta para o lugar onde o sol não fala.',
+    'Enquanto eu ia descendo de novo para aquele fundo escuro, apareceu diante dos meus olhos alguém que, de tanto tempo em silêncio, parecia quase sem voz. Quando o vi ali, naquele deserto imenso, gritei para ele: "Tenha piedade de mim, seja lá quem for — sombra ou homem de verdade!"',
+    'E ele me respondeu: "Homem eu não sou mais, ainda que já tenha sido. Meus pais eram lombardos, e Mântua era a terra dos dois. Nasci ainda sob Júlio César, embora tarde, e vivi em Roma, sob o bom Augusto, no tempo dos deuses falsos e mentirosos. Fui poeta, e cantei o filho de Anquises, aquele justo que veio de Troia depois que a soberba Ílion foi destruída pelo fogo. Mas você, por que volta para tanto sofrimento? Por que não sobe essa colina tão deliciosa, que é o começo e a razão de toda alegria verdadeira?"',
+    '"Então é você Virgílio, aquela fonte que espalha um rio tão largo de palavras?" — respondi, com o rosto tomado de vergonha e admiração ao mesmo tempo. "Você é a honra e a luz de todos os outros poetas. Que me valha, agora, o longo estudo e o grande amor que dediquei ao seu livro, procurando nele o que fez de mim, um pouco, quem eu sou. Você é meu mestre e meu autor. É de você, só de você, que tirei o estilo bonito que já me trouxe alguma honra. Está vendo o bicho por causa do qual eu voltei? Me ajude a escapar dele, sábio famoso, porque ele faz meu sangue e minhas veias tremerem."',
+    '"Você vai ter que seguir por outro caminho", ele me respondeu, ao ver minhas lágrimas, "se quiser sair desse lugar selvagem. Porque esse bicho por causa do qual você grita não deixa ninguém passar por este caminho — pelo contrário, atrapalha tanto que acaba matando. E é de natureza tão má e cruel que nunca satisfaz seu desejo faminto: come, e depois de comer fica com mais fome ainda do que antes. Muitos são os animais com quem ela se ajunta, e serão ainda mais, até que venha um caçador que vai fazê-la morrer com dor. Esse caçador não vai se alimentar de terra nem de riqueza, mas de sabedoria, amor e virtude — e vai nascer entre o povo mais humilde. Ele vai devolver a paz a esta terra baixa e humilhada, aquela mesma pela qual a virgem Camila, e Euríalo, Turno e Niso morreram feridos. Ele vai caçar esse bicho por toda cidade, até jogá-lo de volta no inferno, de onde a inveja o soltou pela primeira vez."',
+    '"Por isso, penso e decido, para seu próprio bem, que você me siga: eu serei seu guia, e vou te tirar daqui, te levando por um lugar eterno, onde você vai ouvir os gritos de desespero e vai ver os antigos espíritos sofredores, aqueles que gritam, cada um, por uma segunda morte que não vem. E depois você vai ver também aqueles que estão contentes dentro do próprio fogo, porque têm esperança de, um dia, chegar até as pessoas felizes — para onde, se quiser subir depois, vai precisar de uma alma mais digna que a minha para te guiar; é com ela que vou te deixar quando eu for embora. Porque aquele imperador que reina lá em cima não quer que eu, que fui rebelde à sua lei, entre na cidade dele. Em todo lugar ele reina, mas é lá que ele governa; lá é sua cidade e seu trono altíssimo. Ah, feliz aquele que ele escolhe para lá!"',
+    'E eu disse a ele: "Poeta, eu te peço, por aquele Deus que você não chegou a conhecer, para que eu escape deste mal e de outro pior, me leve para onde você acabou de dizer, para que eu veja o portão de São Pedro e todos aqueles que você descreve tão tristes." Então ele começou a andar, e eu fui atrás dele.'
+  ],
   resumo:'Dante, aos 35 anos, se dá conta de que está perdido numa floresta escura — metáfora de uma crise espiritual/moral em sua vida. Tenta subir uma colina iluminada pelo sol, mas é barrado por três animais: uma onça (luxúria), um leão (orgulho/violência) e uma loba (avareza/cobiça), que o empurram de volta à escuridão. Nesse desespero, surge a sombra do poeta Virgílio, enviado para guiá-lo por um caminho alternativo — que passa, primeiro, pelo Inferno.',
   simples:'Dante estava perdido numa floresta escura e assustadora. Ele viu uma colina com sol no topo e tentou subir, mas três animais malvados — um leopardo, um leão e uma loba — não deixaram. Então um fantasma gentil de um poeta chamado Virgílio apareceu e disse: "Eu vou te ajudar, mas o caminho é por baixo, não por cima."',
   personagens:[
@@ -367,6 +612,21 @@ const cantos = [
 
 {n:2, grupo:'prologo', titulo:'A missão de Virgílio', local:'Ainda junto à selva escura',
   img: WIKI('Gustave Doré - Dante Alighieri - Inferno - Plate 7 (Beatrice).jpg'),
+  resumoRapido:'Tomado pelo medo de não ser digno da jornada, Dante quase desiste — até Virgílio revelar que foi enviado por Beatriz, movida por uma corrente de graça que vem do próprio Céu.',
+  textoModerno:[
+    'O dia ia embora, e o ar escurecendo liberava do trabalho todos os seres vivos da Terra; só eu, sozinho, me preparava para enfrentar tanto a estrada quanto a dor daquilo tudo, coisa que a memória, sem se enganar, vai descrever agora.',
+    'Ó Musas, ó alto engenho, ajudem-me agora. Ó mente que anotou tudo o que vi, é aqui que sua nobreza vai aparecer.',
+    'Comecei dizendo: "Poeta que me guia, olhe bem para minha coragem antes de me confiar a essa jornada tão pesada. Você conta que o pai de Sílvio, ainda vivo, com o corpo que podia ser tocado, desceu ao mundo imortal — mas se aquele que se opõe a todo mal foi gentil com ele, pensando no efeito importante que sairia dali, e em quem sairia dali, e no que isso significaria, isso não parece coisa fora do razoável para quem pensa direito, já que ele foi escolhido, no alto céu, para ser o pai da nobre Roma e do seu império.',
+    'E Roma e o império, se quisermos dizer a verdade, foram estabelecidos para ser o lugar sagrado onde se sentaria o sucessor do maior Pedro. Nessa viagem que você tanto celebra, ele ouviu coisas que prepararam sua vitória e o manto papal. Depois foi o Vaso de Eleição — quer dizer, São Paulo — quem esteve lá, para trazer confirmação daquela fé que é o começo do caminho da salvação.',
+    'Mas eu, por que eu iria? Quem me permite isso? Eu não sou Eneias, não sou Paulo. Nem eu, nem ninguém, me acha digno disso — e por isso, se eu me entregar a essa jornada, tenho medo de que ela seja loucura. Você é sábio, entende melhor do que eu sei dizer."',
+    'E, como alguém que já não quer mais o que queria e, com novos pensamentos, muda de ideia, de forma que acaba desistindo por completo do que tinha começado, assim fiquei eu naquela encosta escura: pensando tanto sobre aquela empreitada que, no fim, acabei desistindo dela — depois de tê-la começado com tanta pressa.',
+    '"Se eu entendi direito suas palavras", respondeu aquela sombra generosa, "sua alma foi tomada pela covardia — coisa que muitas vezes atrapalha tanto uma pessoa que a desvia de uma ação honrosa, como um animal assustado que enxerga sombra onde não há nada. Para você se livrar desse medo, vou contar por que eu vim, e o que ouvi no momento em que senti pena de você pela primeira vez.',
+    'Eu estava entre aqueles que ficam suspensos, sem esperança — no Limbo —, quando uma mulher me chamou: tão bendita e bela que pedi que ela mandasse em mim. Seus olhos brilhavam mais do que qualquer estrela, e ela começou a falar comigo, com voz doce e calma, num tom de anjo: "Ó alma cortês de Mântua, cuja fama ainda dura no mundo e vai durar enquanto o mundo existir: meu amigo — que não é amigo da sorte — encontra tantos obstáculos naquela encosta deserta que virou de rumo com medo, e temo que já esteja tão perdido que eu tenha me levantado tarde demais para ajudá-lo, pelo que ouvi falar dele lá no céu. Vá agora, e com sua palavra bem cuidada, e com tudo que for preciso para salvá-lo, ajude-o, para que eu fique consolada. Eu sou Beatriz, quem pede que você vá. Venho de um lugar para onde quero voltar. Foi o amor que me moveu e que me faz falar."',
+    '"Depois que ela terminou de falar, calou-se, e eu perguntei: "Ó senhora de virtude, única razão pela qual a espécie humana supera tudo o que existe sob o menor círculo do céu, tanto me agrada obedecer que, se eu já tivesse feito, ainda me pareceria tarde. Não precisa explicar mais o seu desejo. Mas me diga: como você desceu até este centro, sem medo, vindo do lugar amplo para onde deseja voltar?"',
+    '"Já que você quer saber tão a fundo, vou te contar rapidamente", ela respondeu, "por que não tenho medo de entrar aqui. Só se deve temer as coisas que têm poder de fazer mal a alguém; as outras, não, porque não há nada nelas que dê medo. Deus me fez, por sua graça, de um jeito que a miséria de vocês não me toca, e o fogo deste incêndio não me alcança. Há no céu uma senhora gentil que se compadece tanto desse impedimento para o qual eu te mando que quebra, lá em cima, um julgamento rígido. Foi ela quem chamou Lúcia e pediu: "Seu fiel agora precisa de você, e eu o entrego a você." Lúcia, inimiga de toda crueldade, se levantou e veio até onde eu estava, sentada junto à antiga Raquel, e disse: "Beatriz, louvor verdadeiro de Deus, por que você não ajuda aquele que te amou tanto que, por sua causa, saiu da multidão comum? Não ouve a dor no choro dele? Não vê a morte que o combate numa correnteza mais forte que o mar?" Ninguém no mundo foi tão rápido para buscar seu proveito ou fugir de seu dano quanto eu fui, depois dessas palavras, descer até aqui do meu assento abençoado, confiando na sua fala honrada, que te honra a você e a todos que já a ouviram."',
+    'Depois de me dizer isso, ela virou para o alto os olhos cheios de lágrimas, o que me fez andar com mais pressa ainda. E assim eu vim até você, como ela quis; te tirei daquela fera que te impedia o caminho curto para a bela montanha. Então o que é isso? Por que, por que você hesita? Por que tanta covardia no coração? Por que você não tem ousadia e liberdade, se três mulheres tão benditas cuidam de você lá na corte do céu, e minhas palavras te prometem tanto bem?"',
+    'Como as florzinhas, dobradas e fechadas pelo frio da noite, quando o sol as ilumina se abrem todas eretas sobre o próprio caule, assim eu fiz com minha coragem cansada: um calor tão bom correu pelo meu coração que comecei, como alguém livre, a dizer: "Ó piedosa, ela que me socorreu! E você, gentil, que obedeceu tão depressa às palavras verdadeiras que ela te disse! Você deixou meu coração tão disposto, com seu jeito de falar, a querer seguir em frente, que voltei à primeira decisão. Agora vá, que há em nós dois uma só vontade: você é o guia, você é o senhor e o mestre." Assim eu falei; e, quando ele começou a andar, eu entrei pelo caminho alto e difícil.'
+  ],
   resumo:'Ao cair da noite, Dante hesita: por que ele, e não um herói como Eneias ou São Paulo, mereceria essa jornada? Virgílio explica que foi enviado por Beatriz, o amor de infância de Dante, já falecida, que desceu do Paraíso ao Limbo para pedir sua ajuda. Beatriz, por sua vez, foi movida por Santa Lúcia, a pedido da Virgem Maria. Saber que há uma cadeia de mulheres celestiais cuidando dele dá a Dante coragem para seguir.',
   simples:'Dante ficou com medo e disse "eu não sou corajoso o bastante para essa viagem". Virgílio contou um segredo: uma mulher no Céu chamada Beatriz, que Dante amava muito quando ela era viva, pediu para ele ajudar Dante. E foi a própria Virgem Maria quem começou esse pedido de ajuda, passando de mulher em mulher até chegar em Virgílio. Sabendo disso, Dante ganhou coragem.',
   personagens:[
@@ -912,6 +1172,294 @@ list.addEventListener('click', (e) => {
     if (card.classList.contains('open')) body.style.maxHeight = 'none';
   }
 });
+
+/* =========================================================================
+   MODO LEITURA — split-view com texto integral + ferramentas sincronizadas
+   ========================================================================= */
+
+/* ---- normalização: garante numero/resumoRapido/textoModerno em todo canto,
+   mesmo nos que ainda não têm o texto completo escrito (placeholders) ---- */
+cantos.forEach(c => {
+  c.numero = c.n;
+  if (!('textoModerno' in c) || !c.textoModerno) c.textoModerno = null;
+  if (!('resumoRapido' in c) || !c.resumoRapido) {
+    c.resumoRapido = c.resumo.split(/\.\s/)[0].trim() + '.';
+  }
+});
+
+/* ---- armazenamento local, com fallback em memória caso o navegador bloqueie ---- */
+const memoryStore = {};
+const storage = {
+  get(key){
+    try { const v = localStorage.getItem(key); if (v !== null) return v; } catch(e){}
+    return key in memoryStore ? memoryStore[key] : null;
+  },
+  set(key, value){
+    memoryStore[key] = value;
+    try { localStorage.setItem(key, value); } catch(e){ /* segue só na memória desta sessão */ }
+  }
+};
+function loadJSON(key, fallback){
+  const raw = storage.get(key);
+  if (!raw) return fallback;
+  try { return JSON.parse(raw); } catch(e){ return fallback; }
+}
+function saveJSON(key, value){ storage.set(key, JSON.stringify(value)); }
+
+let notesData = loadJSON('dc_notes', {});   // { "1": {texto:'', cor:'gold'} }
+let readData  = loadJSON('dc_read', []);    // [1, 5, 12, ...]
+
+let currentCanto = 1;
+let activeAsideTab = 'resumo';
+
+/* ---- rail de navegação (1 a 34) ---- */
+const railEl = document.getElementById('rail');
+cantos.forEach(c => {
+  const pill = document.createElement('button');
+  pill.type = 'button';
+  pill.className = 'rail-pill' + (c.textoModerno ? ' has-text' : '') + (readData.includes(c.n) ? ' is-read' : '');
+  pill.textContent = c.n;
+  pill.title = `Canto ${c.n} — ${c.titulo}` + (c.textoModerno ? ' (texto completo)' : ' (resumo — texto completo em produção)');
+  pill.dataset.n = c.n;
+  pill.addEventListener('click', () => goToCanto(c.n));
+  railEl.appendChild(pill);
+});
+
+/* ---- barra de progresso ---- */
+const progressFill = document.getElementById('progress-fill');
+const progressText = document.getElementById('progress-text');
+function updateProgress(){
+  const pct = Math.round((readData.length / cantos.length) * 100);
+  progressFill.style.width = pct + '%';
+  progressText.textContent = `${readData.length} de ${cantos.length} lidos — ${pct}%`;
+}
+
+/* ---- post-it: renderização e persistência ---- */
+const CORES_POSTIT = ['gold','ember','sage','dusk','rose'];
+function renderNote(n, slotEl){
+  const note = notesData[n];
+  if (!note) {
+    slotEl.innerHTML = `<button type="button" class="note-empty-btn" data-addnote="${n}">+ Adicionar uma anotação neste canto</button>`;
+    return;
+  }
+  const cor = note.cor || 'gold';
+  slotEl.innerHTML = `
+    <div class="postit ${cor}" data-canto="${n}">
+      <textarea data-notetext="${n}" placeholder="Escreva o que quiser sobre este canto...">${note.texto || ''}</textarea>
+      <div class="postit-toolbar">
+        <div class="postit-swatches">
+          ${CORES_POSTIT.map(c => `<button type="button" class="postit-swatch ${c} ${c===cor?'active':''}" data-notecolor="${n}" data-cor="${c}" title="${c}"></button>`).join('')}
+        </div>
+        <button type="button" class="postit-remove" data-removenote="${n}">Remover</button>
+      </div>
+    </div>
+  `;
+}
+
+/* ---- painel principal: um <article> por canto ---- */
+const readingMain = document.getElementById('reading-main');
+cantos.forEach(c => {
+  const art = document.createElement('article');
+  art.className = 'canto-article' + (readData.includes(c.n) ? ' is-read' : '');
+  art.id = 'canto-' + c.n;
+  art.dataset.n = c.n;
+
+  const imagem = c.img
+    ? `<figure class="ca-img"><img src="${c.img}" alt="Ilustração de Gustave Doré para o Canto ${toRoman(c.n)} do Inferno" loading="lazy"><figcaption>Gustave Doré, "L'Enfer" (1861) — domínio público</figcaption></figure>`
+    : `<div class="ca-img is-emblem">${emblemas[c.grupo] || ''}</div>`;
+
+  const corpo = c.textoModerno
+    ? `<div class="ca-text">${c.textoModerno.map(p => `<p>${p}</p>`).join('')}</div>`
+    : `<div class="ca-placeholder">
+         <span class="ph-tag">Texto completo em produção</span>
+         <p>${c.resumo}</p>
+         <div class="simples-box">${c.simples}</div>
+       </div>`;
+
+  art.innerHTML = `
+    <div class="ca-col">
+      <div class="ca-head">
+        <span class="ca-eyebrow">Canto ${toRoman(c.n)} · ${c.n} de 34</span>
+        <h3>${c.titulo}</h3>
+        <small>${c.local}</small>
+      </div>
+      ${imagem}
+      ${corpo}
+      <label class="read-toggle">
+        <input type="checkbox" data-readtoggle="${c.n}" ${readData.includes(c.n) ? 'checked' : ''}>
+        <span>Marcar canto como lido</span>
+      </label>
+      <div class="note-wrap">
+        <span class="note-label">Sua anotação</span>
+        <div class="note-slot" data-noteslot="${c.n}"></div>
+      </div>
+      <div class="ca-nav">
+        <button data-nav="prev" ${c.n === 1 ? 'disabled' : ''}>‹ Canto ${c.n - 1}</button>
+        <button data-nav="next" ${c.n === 34 ? 'disabled' : ''}>Canto ${c.n + 1} ›</button>
+      </div>
+    </div>
+  `;
+  readingMain.appendChild(art);
+  renderNote(c.n, art.querySelector(`[data-noteslot="${c.n}"]`));
+});
+
+/* ---- interações do painel de leitura: notas + marcação de lido + navegação ---- */
+let noteSaveTimers = {};
+readingMain.addEventListener('click', (e) => {
+  const addBtn = e.target.closest('[data-addnote]');
+  if (addBtn) {
+    const n = Number(addBtn.dataset.addnote);
+    notesData[n] = { texto:'', cor:'gold' };
+    saveJSON('dc_notes', notesData);
+    const slot = document.querySelector(`[data-noteslot="${n}"]`);
+    renderNote(n, slot);
+    slot.querySelector('textarea')?.focus();
+    return;
+  }
+  const removeBtn = e.target.closest('[data-removenote]');
+  if (removeBtn) {
+    const n = Number(removeBtn.dataset.removenote);
+    delete notesData[n];
+    saveJSON('dc_notes', notesData);
+    renderNote(n, document.querySelector(`[data-noteslot="${n}"]`));
+    return;
+  }
+  const swatchBtn = e.target.closest('[data-notecolor]');
+  if (swatchBtn) {
+    const n = Number(swatchBtn.dataset.notecolor);
+    if (!notesData[n]) notesData[n] = { texto:'', cor:'gold' };
+    notesData[n].cor = swatchBtn.dataset.cor;
+    saveJSON('dc_notes', notesData);
+    const slot = document.querySelector(`[data-noteslot="${n}"]`);
+    const focoAtivo = document.activeElement === slot.querySelector('textarea');
+    renderNote(n, slot);
+    if (focoAtivo) slot.querySelector('textarea')?.focus();
+    return;
+  }
+  const navBtn = e.target.closest('[data-nav]');
+  if (navBtn && !navBtn.disabled) {
+    const dir = navBtn.dataset.nav === 'next' ? 1 : -1;
+    goToCanto(Math.min(34, Math.max(1, currentCanto + dir)));
+  }
+});
+
+readingMain.addEventListener('input', (e) => {
+  const ta = e.target.closest('[data-notetext]');
+  if (!ta) return;
+  const n = Number(ta.dataset.notetext);
+  if (!notesData[n]) notesData[n] = { texto:'', cor:'gold' };
+  notesData[n].texto = ta.value;
+  clearTimeout(noteSaveTimers[n]);
+  noteSaveTimers[n] = setTimeout(() => saveJSON('dc_notes', notesData), 400);
+});
+
+readingMain.addEventListener('change', (e) => {
+  const chk = e.target.closest('[data-readtoggle]');
+  if (!chk) return;
+  const n = Number(chk.dataset.readtoggle);
+  const idx = readData.indexOf(n);
+  if (chk.checked && idx === -1) readData.push(n);
+  if (!chk.checked && idx !== -1) readData.splice(idx, 1);
+  saveJSON('dc_read', readData);
+  document.getElementById('canto-' + n)?.classList.toggle('is-read', chk.checked);
+  railEl.querySelector(`.rail-pill[data-n="${n}"]`)?.classList.toggle('is-read', chk.checked);
+  updateProgress();
+});
+
+/* ---- painel lateral (ferramentas contextuais) ---- */
+const nowCard = document.getElementById('now-card');
+const miniFunilEl = document.getElementById('mini-funil');
+const asideTools = document.getElementById('aside-tools');
+
+grupos.forEach(g => {
+  const bar = document.createElement('div');
+  bar.className = 'mini-faixa';
+  bar.style.background = g.color;
+  bar.dataset.key = g.key;
+  bar.title = g.nome;
+  bar.addEventListener('click', () => {
+    const alvo = cantos.find(c => c.grupo === g.key);
+    if (alvo) goToCanto(alvo.n);
+  });
+  miniFunilEl.appendChild(bar);
+});
+
+function renderAsideTools(c) {
+  const personagensHtml = c.personagens.map(p => `<div class="pchar"><b>${p.nome}</b><br>${p.desc}</div>`).join('');
+  const vocabHtml = c.vocab.map(v => `<li><b>${v.p}</b> — ${v.d}</li>`).join('');
+  asideTools.innerHTML = `
+    <div class="tabs">
+      <button class="tab-btn ${activeAsideTab === 'resumo' ? 'active' : ''}" data-tab="resumo">Resumo</button>
+      <button class="tab-btn ${activeAsideTab === 'personagens' ? 'active' : ''}" data-tab="personagens">Personagens</button>
+      <button class="tab-btn ${activeAsideTab === 'vocab' ? 'active' : ''}" data-tab="vocab">Vocabulário</button>
+      <button class="tab-btn ${activeAsideTab === 'contexto' ? 'active' : ''}" data-tab="contexto">Contexto</button>
+    </div>
+    <div class="tab-panel ${activeAsideTab === 'resumo' ? 'active' : ''}" data-panel="resumo"><p>${c.resumo}</p></div>
+    <div class="tab-panel ${activeAsideTab === 'personagens' ? 'active' : ''}" data-panel="personagens">${personagensHtml}</div>
+    <div class="tab-panel ${activeAsideTab === 'vocab' ? 'active' : ''}" data-panel="vocab"><ul class="vocab-list">${vocabHtml}</ul></div>
+    <div class="tab-panel ${activeAsideTab === 'contexto' ? 'active' : ''}" data-panel="contexto"><p>${c.contexto}</p></div>
+  `;
+}
+
+function updateAside(n) {
+  const c = cantos.find(x => x.n === n);
+  const g = grupos.find(gr => gr.key === c.grupo);
+
+  nowCard.innerHTML = `
+    <div class="nc-eyebrow">Você está lendo</div>
+    <h4>Canto ${c.n} — ${c.titulo}</h4>
+    <small>${g.nome}</small>
+  `;
+
+  miniFunilEl.querySelectorAll('.mini-faixa').forEach(b => {
+    b.classList.toggle('active', b.dataset.key === c.grupo);
+  });
+
+  renderAsideTools(c);
+}
+
+asideTools.addEventListener('click', (e) => {
+  const btn = e.target.closest('.tab-btn');
+  if (!btn) return;
+  activeAsideTab = btn.dataset.tab;
+  renderAsideTools(cantos.find(x => x.n === currentCanto));
+});
+
+/* ---- navegação (rail + botões prev/next dentro de cada artigo) ---- */
+function setActiveCanto(n) {
+  currentCanto = n;
+  railEl.querySelectorAll('.rail-pill').forEach(p => p.classList.toggle('active', Number(p.dataset.n) === n));
+  updateAside(n);
+}
+
+function goToCanto(n) {
+  const target = document.getElementById('canto-' + n);
+  if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  setActiveCanto(n);
+}
+
+/* ---- sincronização automática ao rolar o painel de leitura ---- */
+const scrollObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      const n = Number(entry.target.dataset.n);
+      if (n !== currentCanto) setActiveCanto(n);
+    }
+  });
+}, { root: readingMain, threshold: 0.5 });
+
+document.querySelectorAll('.canto-article').forEach(el => scrollObserver.observe(el));
+
+/* ---- painel de ferramentas retrátil no mobile ---- */
+const asideToggle = document.getElementById('aside-toggle');
+const readingAside = document.getElementById('reading-aside');
+if (asideToggle) {
+  asideToggle.addEventListener('click', () => readingAside.classList.toggle('open'));
+}
+
+/* ---- estado inicial ---- */
+updateProgress();
+setActiveCanto(1);
 </script>
 </body>
 </html>
